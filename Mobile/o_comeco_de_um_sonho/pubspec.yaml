@@ -51,8 +51,8 @@ dependencies:
   dropdown_search: ^6.0.1
   location: ^6.0.2
   geocoding: ^3.0.0
-#  flutter_native_splash: ^2.4.2
   flutter_webrtc: ^0.10.8
+  flutter_native_splash: ^2.4.4
 
 dev_dependencies:
   flutter_test:
@@ -64,28 +64,37 @@ dev_dependencies:
   # package. See that file for information about deactivating specific lint
   # rules and activating additional ones.
   flutter_lints: ^5.0.0
+  flutter_launcher_icons: "^0.13.1"
 
+flutter_native_splash:
+  color: "#ffffff"           # Cor de fundo da splash
+  image: assets/splash.png   # Caminho para a imagem
+  android: true              # Gera para Android
+  ios: true                  # Gera para iOS
+  fullscreen: true           # Splash em tela cheia
 
+flutter_icons:
+  android: true  # Gera o ícone para Android
+  image_path: "assets/icone.png"  # Caminho da imagem do ícone
+  adaptive_icon_background: "#ffffff"  # Cor do fundo do ícone (para Android)
+  adaptive_icon_foreground: "assets/icone.png"
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
 
 # The following section is specific to Flutter packages.
 flutter:
-
-  # The following line ensures that the Material Icons font is
-  # included with your application, so that you can use the icons in
-  # the material Icons class.
   uses-material-design: true
 
-
+  fonts:
+    - family: Mordis
+      fonts:
+        - asset: assets/Fonts/Mordis.ttf
+    - family: Ananda
+      fonts:
+        - asset: assets/Fonts/Ananda.ttf
   assets:
     - assets/
+    - assets/Pin/
+    - assets/Fotos/
 
-
-#  flutter_native_splash:
-#    color: "#ff6600" # Cor de fundo da splash screen
-#    image: assets/splash.png # Caminho para a imagem da splash screen
-#    android: true # Ativar no Android
-#    ios: true # Ativar no iOS
-#    fullscreen: true # Opcional, para splash em tela cheia
