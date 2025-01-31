@@ -5,6 +5,8 @@ import 'package:get/get.dart';
 import 'package:o_comeco_de_um_sonho/routes/app_pages.dart';
 import 'package:o_comeco_de_um_sonho/routes/app_routes.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:flutter_localizations/flutter_localizations.dart';
+
 
 import 'helper/database_helper.dart';
 
@@ -14,7 +16,7 @@ void main() async {
   SharedPreferences prefs = await SharedPreferences.getInstance();
   bool introducaoCompleted = prefs.getBool('introducaoCompleted') ?? false;
 
-  initDatabase();
+  await initDatabase();
 
   runApp(MyApp(introducaoCompleted: introducaoCompleted));
 }
@@ -39,6 +41,11 @@ class MyApp extends StatelessWidget {
       supportedLocales: [
         const Locale('en', 'US'),
         const Locale('pt', 'BR'),
+      ],
+      localizationsDelegates: [
+        GlobalMaterialLocalizations.delegate,
+        GlobalWidgetsLocalizations.delegate,
+        GlobalCupertinoLocalizations.delegate,
       ],
       theme: ThemeData(
         scaffoldBackgroundColor: Colors.white, // Fundo padrão das telas do aplicativo

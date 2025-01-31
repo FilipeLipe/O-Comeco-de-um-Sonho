@@ -53,6 +53,7 @@ dependencies:
   geocoding: ^3.0.0
   flutter_webrtc: ^0.10.8
   flutter_native_splash: ^2.4.4
+  flutter_localization: ^0.2.1
 
 dev_dependencies:
   flutter_test:
