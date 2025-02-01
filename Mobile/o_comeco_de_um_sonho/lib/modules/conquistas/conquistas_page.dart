@@ -9,7 +9,7 @@ class ConquistasPage extends StatelessWidget {
   // Lista simulada; substitua com dados reais do DB
   final List<Conquistas> conquistas = [
     Conquistas(title: "Voar de Asa Delta", description: "Meta para voar", achieved: false, imagePath: "assets/images/asa_delta_bw.png"),
-    Conquistas(title: "Paraquedas", description: "Meta para saltar", achieved: true, imagePath: "assets/images/paraquedas_color.png"),
+    Conquistas(title: "Voo de balão", description: "Meta para saltar", achieved: true, imagePath: "assets/Pin/Balao.png"),
   ];
 
   @override
