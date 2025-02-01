@@ -1,4 +1,4 @@
-// lib/modules/home/home_binding.dart
+// lib/modules/home/calendarioio_binding.dart
 
 import 'package:get/get.dart';
 import 'home_controller.dart';

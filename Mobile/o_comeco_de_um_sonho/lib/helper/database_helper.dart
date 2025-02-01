@@ -28,13 +28,63 @@ class DatabaseHelper {
 
   static Future _onCreate(Database db, int version) async {
     await db.execute('''
-    CREATE TABLE IF NOT EXISTS tb_fotos (
-      id INTEGER PRIMARY KEY AUTOINCREMENT,
-      foto BLOB,
-      descricao TEXT,
-      data_captura TEXT
-    )
-  ''');
+      CREATE TABLE IF NOT EXISTS tb_fotos (
+        id INTEGER PRIMARY KEY AUTOINCREMENT,
+        foto BLOB,
+        descricao TEXT,
+        data_captura TEXT
+      )
+    ''');
+
+    await db.execute('''
+      CREATE TABLE tb_memorias(
+        id INTEGER PRIMARY KEY AUTOINCREMENT,
+        date TEXT NOT NULL,
+        description TEXT,
+        imagePath TEXT
+      )
+    ''');
+
+    await db.execute('''
+      CREATE TABLE tb_conquistas(
+        id INTEGER PRIMARY KEY AUTOINCREMENT,
+        title TEXT NOT NULL,
+        description TEXT,
+        achieved INTEGER NOT NULL,
+        imagePath TEXT,
+        achievedDate TEXT,
+        location TEXT
+      )
+    ''');
+
+    await db.execute('''
+      CREATE TABLE tb_destinos(
+        id INTEGER PRIMARY KEY AUTOINCREMENT,
+        name TEXT NOT NULL,
+        description TEXT,
+        latitude REAL NOT NULL,
+        longitude REAL NOT NULL,
+        imagePath TEXT,
+        visited INTEGER NOT NULL
+      )
+    ''');
+
+    await db.execute('''
+      CREATE TABLE tb_calendarioio(
+        id INTEGER PRIMARY KEY AUTOINCREMENT,
+        title TEXT NOT NULL,
+        date TEXT NOT NULL,
+        description TEXT
+      )
+    ''');
+
+    await db.execute('''
+      CREATE TABLE tb_info_casal(
+        id INTEGER PRIMARY KEY AUTOINCREMENT,
+        startDate TEXT NOT NULL,
+        additionalInfo TEXT
+      )
+    ''');
   }
 
   static Future _onUpgrade(Database db, int oldVersion, int newVersion) async {
