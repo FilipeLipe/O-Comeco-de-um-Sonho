@@ -1,0 +1,51 @@
+/Pins/*.psd
+# Flutter/Dart
+**/build/
+**/ios/Flutter/.last_build_id
+.dart_tool/
+.flutter-plugins
+.flutter-plugins-dependencies
+.packages
+.pub-cache/
+.pub/
+
+# IDEs
+.idea/
+.vscode/
+*.iml
+*.swp
+
+# Configurações de usuário
+*.DS_Store
+*.log
+*.bak
+
+# Configuração específica do Android
+android/key.properties
+android/app/google-services.json
+android/app/src/debug/
+android/app/src/profile/
+android/app/src/main/jniLibs/
+android/.cxx/
+
+# Configuração específica do iOS
+ios/Pods/
+ios/.symlinks/
+ios/Flutter/App.framework
+ios/Flutter/Flutter.framework
+ios/Flutter/Generated.xcconfig
+ios/Flutter/ephemeral/
+ios/.generated/
+ios/Runner.xcworkspace/
+
+# Arquivos gerados pelo Firebase
+firebase.json
+
+# Outros arquivos desnecessários
+*.lock
+*.log
+*.tmp
+
+# Configuração de testes
+coverage/
+.integration_test_failures/

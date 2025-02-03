@@ -1,5 +1,3 @@
-// lib/main.dart
-
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:o_comeco_de_um_sonho/routes/app_pages.dart';
@@ -48,14 +46,14 @@ class MyApp extends StatelessWidget {
         GlobalCupertinoLocalizations.delegate,
       ],
       theme: ThemeData(
-        scaffoldBackgroundColor: Colors.white, // Fundo padrão das telas do aplicativo
-        dialogBackgroundColor: Colors.white, // Fundo dos diálogos
-        canvasColor: Colors.white, // Fundo de menus e drawers
+        scaffoldBackgroundColor: Colors.white,
+        dialogBackgroundColor: Colors.white,
+        canvasColor: Colors.white,
         colorScheme: ColorScheme.fromSwatch(
-          primarySwatch: Colors.teal, // Define a cor primária do tema
+          primarySwatch: Colors.teal,
         ).copyWith(
-          surface: Colors.white, // Define fundo de cartões e superfícies
-          background: Colors.white, // Fundo geral do aplicativo
+          surface: Colors.white,
+          background: Colors.white,
         ),
       ),
       initialRoute: introducaoCompleted ? Routes.HOME : Routes.INTRODUCAO,

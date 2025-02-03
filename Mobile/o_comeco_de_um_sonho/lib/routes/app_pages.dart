@@ -1,6 +1,10 @@
 // lib/routes/app_pages.dart
 
 import 'package:get/get.dart';
+import 'package:o_comeco_de_um_sonho/modules/conquistas/add_conquista/add_conquista_binding.dart';
+import 'package:o_comeco_de_um_sonho/modules/conquistas/add_conquista/add_conquista_page.dart';
+import 'package:o_comeco_de_um_sonho/modules/conquistas/detalhe_conquista/detalhe_conquista_binding.dart';
+import 'package:o_comeco_de_um_sonho/modules/conquistas/detalhe_conquista/detalhe_conquista_page.dart';
 import 'package:o_comeco_de_um_sonho/modules/mapa/mapa_binding.dart';
 import 'package:o_comeco_de_um_sonho/modules/mapa/mapa_page.dart';
 
@@ -24,5 +28,7 @@ class AppPages {
     GetPage(name: Routes.CALENDARIO, page: () => CalendarioPage(), binding: HomeBinding()),
     GetPage(name: Routes.INFO_CASAL, page: () => InfoCasalPage(), binding: HomeBinding()),
     GetPage(name: Routes.MAPA, page: () => MapaPage(), binding: MapaBinding()),
+    GetPage(name: Routes.ADD_CONQUISTA, page: () => AddConquistaPage(), binding: AddConquistaBinding()),
+    GetPage(name: Routes.DETALHE_CONQUISTA, page: () => DetalheConquistaPage(), binding: DetalheConquistaBinding()),
   ];
 }

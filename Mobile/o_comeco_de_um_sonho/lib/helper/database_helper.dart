@@ -39,8 +39,8 @@ class DatabaseHelper {
     await db.execute('''
       CREATE TABLE tb_memorias(
         id INTEGER PRIMARY KEY AUTOINCREMENT,
-        date TEXT NOT NULL,
-        description TEXT,
+        data TEXT NOT NULL,
+        descricao TEXT,
         imagePath TEXT
       )
     ''');
@@ -48,41 +48,41 @@ class DatabaseHelper {
     await db.execute('''
       CREATE TABLE tb_conquistas(
         id INTEGER PRIMARY KEY AUTOINCREMENT,
-        title TEXT NOT NULL,
-        description TEXT,
-        achieved INTEGER NOT NULL,
+        titulo TEXT NOT NULL,
+        descricao TEXT,
+        ativo INTEGER NOT NULL,
         imagePath TEXT,
-        achievedDate TEXT,
-        location TEXT
+        dataConquista TEXT,
+        local TEXT
       )
     ''');
 
     await db.execute('''
       CREATE TABLE tb_destinos(
         id INTEGER PRIMARY KEY AUTOINCREMENT,
-        name TEXT NOT NULL,
-        description TEXT,
+        nome TEXT NOT NULL,
+        descricao TEXT,
         latitude REAL NOT NULL,
         longitude REAL NOT NULL,
         imagePath TEXT,
-        visited INTEGER NOT NULL
+        visitado INTEGER NOT NULL
       )
     ''');
 
     await db.execute('''
       CREATE TABLE tb_calendarioio(
         id INTEGER PRIMARY KEY AUTOINCREMENT,
-        title TEXT NOT NULL,
-        date TEXT NOT NULL,
-        description TEXT
+        titulo TEXT NOT NULL,
+        data TEXT NOT NULL,
+        descricao TEXT
       )
     ''');
 
     await db.execute('''
       CREATE TABLE tb_info_casal(
         id INTEGER PRIMARY KEY AUTOINCREMENT,
-        startDate TEXT NOT NULL,
-        additionalInfo TEXT
+        dataInicio TEXT NOT NULL,
+        textoCasal TEXT
       )
     ''');
   }

@@ -11,10 +11,8 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  // Cria uma GlobalKey para controlar o estado do SliderDrawer (para abrir/fechar)
   final GlobalKey<SliderDrawerState> _sliderDrawerKey = GlobalKey<SliderDrawerState>();
 
-  // Widget que representa o menu lateral (slider)
   Widget _buildSlider() {
     return Container(
       color: Colors.teal,

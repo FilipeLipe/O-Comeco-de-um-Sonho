@@ -6,10 +6,9 @@ class InfoCasalController extends GetxController {
   var coupleInfo = Rxn<InfoCasal>();
 
   void loadInfoCasal() {
-    // Carregar informações do casal do banco de dados
     coupleInfo.value = InfoCasal(
-      startDate: DateTime(2020, 1, 1),
-      additionalInfo: "Casal apaixonado!",
+      dataInicio: DateTime(2020, 1, 1),
+      textoCasal: "Casal apaixonado!",
     );
   }
 

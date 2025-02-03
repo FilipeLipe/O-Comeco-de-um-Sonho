@@ -5,13 +5,11 @@ import '../../data/models/infoCasal.dart';
 class InfoCasalPage extends StatelessWidget {
   InfoCasalPage({Key? key}) : super(key: key);
 
-  // Simulação; carregue os dados do DB
-  final InfoCasal coupleInfo = InfoCasal(startDate: DateTime(2020, 1, 1), additionalInfo: "Casal feliz!");
+  final InfoCasal coupleInfo = InfoCasal(dataInicio: DateTime(2020, 1, 1), textoCasal: "Casal feliz!");
 
   @override
   Widget build(BuildContext context) {
-    // Calcular a duração juntos
-    final duration = DateTime.now().difference(coupleInfo.startDate);
+    final duration = DateTime.now().difference(coupleInfo.dataInicio);
     final daysTogether = duration.inDays;
 
     return Scaffold(
@@ -27,7 +25,7 @@ class InfoCasalPage extends StatelessWidget {
               "$daysTogether dias",
             ),
             const SizedBox(height: 20),
-            Text(coupleInfo.additionalInfo ?? ""),
+            Text(coupleInfo.textoCasal ?? ""),
           ],
         ),
       ),

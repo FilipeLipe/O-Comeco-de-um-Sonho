@@ -1,5 +1,5 @@
 name: o_comeco_de_um_sonho
-description: "A new Flutter project."
+descricao: "A new Flutter project."
 # The following line prevents the package from being accidentally published to
 # pub.dev using `flutter pub publish`. This is preferred for private packages.
 publish_to: 'none' # Remove this line if you wish to publish to pub.dev
@@ -61,6 +61,7 @@ dependencies:
   latlong2: ^0.8.0
   dropdown_button2: ^2.3.9
   flutter_slider_drawer: ^3.0.2
+  image_picker: ^1.1.2
 
 dev_dependencies:
   flutter_test:

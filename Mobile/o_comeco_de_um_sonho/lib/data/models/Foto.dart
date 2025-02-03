@@ -18,7 +18,7 @@ class Foto {
       id: json['id'],
       foto: json['foto'],
       descricao: json['descricao'],
-      dataCaptura: json['data_captura'],
+      dataCaptura: json['dataCaptura'],
     );
   }
 
@@ -27,7 +27,7 @@ class Foto {
       'id': id,
       'foto': foto,
       'descricao': descricao,
-      'data_captura': dataCaptura,
+      'dataCaptura': dataCaptura,
     };
   }
 

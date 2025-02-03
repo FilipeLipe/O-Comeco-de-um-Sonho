@@ -1,5 +1,3 @@
-// lib/modules/home/calendarioio_binding.dart
-
 import 'package:get/get.dart';
 import 'calendario_controller.dart';
 

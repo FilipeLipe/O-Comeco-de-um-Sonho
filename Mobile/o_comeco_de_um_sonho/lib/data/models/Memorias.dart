@@ -1,21 +1,21 @@
 class Memorias {
   final int? id;
-  final DateTime date;
-  final String description;
+  final DateTime data;
+  final String descricao;
   final String? imagePath;
 
   Memorias({
     this.id,
-    required this.date,
-    required this.description,
+    required this.data,
+    required this.descricao,
     this.imagePath,
   });
 
   Map<String, dynamic> toMap() {
     return {
       'id': id,
-      'date': date.toIso8601String(),
-      'description': description,
+      'data': data.toIso8601String(),
+      'descricao': descricao,
       'imagePath': imagePath,
     };
   }
@@ -23,8 +23,8 @@ class Memorias {
   factory Memorias.fromMap(Map<String, dynamic> map) {
     return Memorias(
       id: map['id'],
-      date: DateTime.parse(map['date']),
-      description: map['description'],
+      data: DateTime.parse(map['data']),
+      descricao: map['descricao'],
       imagePath: map['imagePath'],
     );
   }

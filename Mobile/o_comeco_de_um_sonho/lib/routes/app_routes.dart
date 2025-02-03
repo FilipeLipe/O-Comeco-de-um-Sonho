@@ -9,4 +9,6 @@ abstract class Routes {
   static const CALENDARIO = '/calendario';
   static const INFO_CASAL = '/info_casal';
   static const MAPA = '/mapa';
+  static const ADD_CONQUISTA = '/add_conquista';
+  static const DETALHE_CONQUISTA = '/detalhe_conquista';
 }

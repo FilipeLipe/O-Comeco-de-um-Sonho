@@ -1,27 +1,27 @@
 class InfoCasal {
   final int? id;
-  final DateTime startDate;
-  final String? additionalInfo;
+  final DateTime dataInicio;
+  final String? textoCasal;
 
   InfoCasal({
     this.id,
-    required this.startDate,
-    this.additionalInfo,
+    required this.dataInicio,
+    this.textoCasal,
   });
 
   Map<String, dynamic> toMap() {
     return {
       'id': id,
-      'startDate': startDate.toIso8601String(),
-      'additionalInfo': additionalInfo,
+      'dataInicio': dataInicio.toIso8601String(),
+      'textoCasal': textoCasal,
     };
   }
 
   factory InfoCasal.fromMap(Map<String, dynamic> map) {
     return InfoCasal(
       id: map['id'],
-      startDate: DateTime.parse(map['startDate']),
-      additionalInfo: map['additionalInfo'],
+      dataInicio: DateTime.parse(map['dataInicio']),
+      textoCasal: map['textoCasal'],
     );
   }
 }

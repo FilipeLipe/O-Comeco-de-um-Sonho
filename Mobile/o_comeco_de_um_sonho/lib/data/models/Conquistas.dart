@@ -1,43 +1,43 @@
 class Conquistas {
   final int? id;
-  final String title;
-  final String description;
-  final bool achieved;
-  final String? imagePath;
-  final DateTime? achievedDate;
-  final String? location;
+  final String titulo;
+  final String descricao;
+  final bool ativo;
+  final String? imagem;
+  final DateTime? dataConquista;
+  final String? local;
 
   Conquistas({
     this.id,
-    required this.title,
-    required this.description,
-    this.achieved = false,
-    this.imagePath,
-    this.achievedDate,
-    this.location,
+    required this.titulo,
+    required this.descricao,
+    this.ativo = false,
+    this.imagem,
+    this.dataConquista,
+    this.local,
   });
 
   Map<String, dynamic> toMap() {
     return {
       'id': id,
-      'title': title,
-      'description': description,
-      'achieved': achieved ? 1 : 0,
-      'imagePath': imagePath,
-      'achievedDate': achievedDate?.toIso8601String(),
-      'location': location,
+      'titulo': titulo,
+      'descricao': descricao,
+      'ativo': ativo ? 1 : 0,
+      'imagem': imagem,
+      'dataConquista': dataConquista?.toIso8601String(),
+      'local': local,
     };
   }
 
   factory Conquistas.fromMap(Map<String, dynamic> map) {
     return Conquistas(
       id: map['id'],
-      title: map['title'],
-      description: map['description'],
-      achieved: map['achieved'] == 1,
-      imagePath: map['imagePath'],
-      achievedDate: map['achievedDate'] != null ? DateTime.parse(map['achievedDate']) : null,
-      location: map['location'],
+      titulo: map['titulo'],
+      descricao: map['descricao'],
+      ativo: map['ativo'] == 1,
+      imagem: map['imagem'],
+      dataConquista: map['dataConquista'] != null ? DateTime.parse(map['dataConquista']) : null,
+      local: map['local'],
     );
   }
 }

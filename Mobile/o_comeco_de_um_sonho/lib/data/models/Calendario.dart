@@ -1,31 +1,31 @@
 class Calendario {
   final int? id;
-  final String title;
-  final DateTime date;
-  final String? description;
+  final String titulo;
+  final DateTime data;
+  final String? descricao;
 
   Calendario({
     this.id,
-    required this.title,
-    required this.date,
-    this.description,
+    required this.titulo,
+    required this.data,
+    this.descricao,
   });
 
   Map<String, dynamic> toMap() {
     return {
       'id': id,
-      'title': title,
-      'date': date.toIso8601String(),
-      'description': description,
+      'titulo': titulo,
+      'data': data.toIso8601String(),
+      'descricao': descricao,
     };
   }
 
   factory Calendario.fromMap(Map<String, dynamic> map) {
     return Calendario(
       id: map['id'],
-      title: map['title'],
-      date: DateTime.parse(map['date']),
-      description: map['description'],
+      titulo: map['titulo'],
+      data: DateTime.parse(map['data']),
+      descricao: map['descricao'],
     );
   }
 }

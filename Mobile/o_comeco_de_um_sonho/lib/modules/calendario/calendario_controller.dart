@@ -7,7 +7,7 @@ class CalendarioController extends GetxController {
 
   void loadEvents() {
     events.value = [
-      Calendario(title: "Encontro no cinema", date: DateTime.now(), description: "Filme novo!"),
+      Calendario(titulo: "Encontro no cinema", data: DateTime.now(), descricao: "Filme novo!"),
     ];
   }
 

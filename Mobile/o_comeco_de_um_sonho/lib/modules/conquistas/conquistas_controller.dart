@@ -1,4 +1,3 @@
-// lib/modules/conquistas/conquistas_controller.dart
 import 'package:get/get.dart';
 import 'package:o_comeco_de_um_sonho/data/models/Conquistas.dart';
 
@@ -7,8 +6,8 @@ class ConquistasController extends GetxController {
 
   void loadConquistas() {
     conquistas.value = [
-      Conquistas(title: "Voar de Asa Delta", description: "Meta de voar", achieved: false, imagePath: "assets/images/asa_delta_bw.png"),
-      Conquistas(title: "Paraquedas", description: "Meta de saltar", achieved: true, imagePath: "assets/images/paraquedas_color.png"),
+      Conquistas(titulo: "Voar de Asa Delta", descricao: "Meta de voar", ativo: false, imagem: "assets/images/asa_delta_bw.png"),
+      Conquistas(titulo: "Paraquedas", descricao: "Meta de saltar", ativo: true, imagem: "assets/images/paraquedas_color.png"),
     ];
   }
 

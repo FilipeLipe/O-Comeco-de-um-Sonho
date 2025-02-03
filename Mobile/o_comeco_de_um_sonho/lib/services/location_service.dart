@@ -6,10 +6,8 @@ class LocationService {
     bool serviceEnabled;
     LocationPermission permission;
 
-    // Verifica se o serviço de localização está habilitado
     serviceEnabled = await Geolocator.isLocationServiceEnabled();
     if (!serviceEnabled) {
-      // Se não estiver, lance uma exceção ou peça para habilitar
       throw Exception('Serviço de localização desabilitado');
     }
 
