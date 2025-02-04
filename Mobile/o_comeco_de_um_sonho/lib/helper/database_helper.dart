@@ -51,7 +51,7 @@ class DatabaseHelper {
         titulo TEXT NOT NULL,
         descricao TEXT,
         ativo INTEGER NOT NULL,
-        imagePath TEXT,
+        imagem TEXT,
         dataConquista TEXT,
         local TEXT
       )

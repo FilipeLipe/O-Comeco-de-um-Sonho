@@ -7,6 +7,7 @@ import '../../data/models/Conquistas.dart';
 import '../../routes/app_routes.dart';
 import '../../widget/CustomPinGrid.dart';
 import '../../widget/CustomSlider.dart';
+import 'conquistas_controller.dart';
 
 class ConquistasPage extends StatefulWidget {
   const ConquistasPage({Key? key}) : super(key: key);
@@ -19,31 +20,10 @@ class _ConquistasPageState extends State<ConquistasPage> {
 
   bool isGridMode = false;
 
-  final List<Conquistas> conquistas = [
-    Conquistas(titulo: "Acampar", descricao: "Meta para voar", ativo: false, imagem: "Acampar"),
-    Conquistas(titulo: "AsaDelta", descricao: "Meta para saltar", ativo: true, imagem: "AsaDelta"),
-    Conquistas(titulo: "Balao", descricao: "Meta para saltar", ativo: false, imagem: "Balao"),
-    Conquistas(titulo: "Braunas", descricao: "Meta para voar", ativo: false, imagem: "Braunas"),
-    Conquistas(titulo: "Caiaque", descricao: "Meta para saltar", ativo: true, imagem: "Caiaque"),
-    Conquistas(titulo: "CampCross", descricao: "Meta para saltar", ativo: false, imagem: "CampCross"),
-    Conquistas(titulo: "Contorno", descricao: "Meta para voar", ativo: false, imagem: "Contorno"),
-    Conquistas(titulo: "Escalada", descricao: "Meta para saltar", ativo: true, imagem: "Escalada"),
-    Conquistas(titulo: "Estadio", descricao: "Meta para saltar", ativo: false, imagem: "Estadio"),
-    Conquistas(titulo: "Mergulho", descricao: "Meta para voar", ativo: false, imagem: "Mergulho"),
-    Conquistas(titulo: "Noivado", descricao: "Meta para saltar", ativo: true, imagem: "Noivado"),
-    Conquistas(titulo: "NossaCasa", descricao: "Meta para saltar", ativo: false, imagem: "NossaCasa"),
-    Conquistas(titulo: "Pampulha", descricao: "Meta para voar", ativo: false, imagem: "Pampulha"),
-    Conquistas(titulo: "Paraquedas", descricao: "Meta para saltar", ativo: true, imagem: "Paraquedas"),
-    Conquistas(titulo: "Pendulo", descricao: "Meta para saltar", ativo: false, imagem: "Pendulo"),
-    Conquistas(titulo: "Rapel", descricao: "Meta para voar", ativo: false, imagem: "Rapel"),
-    Conquistas(titulo: "TrailRun", descricao: "Meta para saltar", ativo: true, imagem: "TrailRun"),
-    Conquistas(titulo: "Triatlo", descricao: "Meta para saltar", ativo: false, imagem: "Triatlo"),
-    Conquistas(titulo: "Utv", descricao: "Meta para saltar", ativo: true, imagem: "Utv"),
-    Conquistas(titulo: "Viajar Moto", descricao: "Meta para saltar", ativo: false, imagem: "ViajarMoto"),
-  ];
-
   @override
   Widget build(BuildContext context) {
+
+    final ConquistasController controller = Get.find<ConquistasController>();
     return Scaffold(
       appBar: AppBar(
         title: const Text("Conquistas"),
@@ -59,7 +39,7 @@ class _ConquistasPageState extends State<ConquistasPage> {
           ),
         ],
       ),
-      body: isGridMode ? buildGridView() : buildSliderView(),
+      body: isGridMode ? buildGridView(controller) : buildSliderView(controller),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
           Get.toNamed(Routes.ADD_CONQUISTA);
@@ -70,11 +50,11 @@ class _ConquistasPageState extends State<ConquistasPage> {
     );
   }
 
-  Widget buildSliderView() {
+  Widget buildSliderView(ConquistasController controller) {
     return PageView.builder(
-      itemCount: conquistas.length,
+      itemCount: controller.conquistas.value.length,
       itemBuilder: (context, index) {
-        final conquista = conquistas[index];
+        final conquista = controller.conquistas.value[index];
         return Padding(
           padding: const EdgeInsets.all(8.0),
           child: ConquistasCard(
@@ -90,10 +70,10 @@ class _ConquistasPageState extends State<ConquistasPage> {
     );
   }
 
-  Widget buildGridView() {
+  Widget buildGridView(ConquistasController controller) {
     return GridView.builder(
       padding: const EdgeInsets.all(8.0),
-      itemCount: conquistas.length,
+      itemCount: controller.conquistas.value.length,
       gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
         crossAxisCount: 3,
         mainAxisSpacing: 8,
@@ -101,7 +81,7 @@ class _ConquistasPageState extends State<ConquistasPage> {
         childAspectRatio: 1.2,
       ),
       itemBuilder: (context, index) {
-        final conquista = conquistas[index];
+        final conquista = controller.conquistas.value[index];
         return CustomPinGrid(
           titulo: conquista.titulo,
           imagePath: conquista.imagem!,

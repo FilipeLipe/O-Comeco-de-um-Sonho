@@ -1,14 +1,14 @@
 import 'package:get/get.dart';
-import 'package:o_comeco_de_um_sonho/data/models/Conquistas.dart';
+import 'package:o_comeco_de_um_sonho/data/models/conquistas.dart';
+
+
+import '../../data/dao/conquistas_dao.dart';
 
 class ConquistasController extends GetxController {
   var conquistas = <Conquistas>[].obs;
 
-  void loadConquistas() {
-    conquistas.value = [
-      Conquistas(titulo: "Voar de Asa Delta", descricao: "Meta de voar", ativo: false, imagem: "assets/images/asa_delta_bw.png"),
-      Conquistas(titulo: "Paraquedas", descricao: "Meta de saltar", ativo: true, imagem: "assets/images/paraquedas_color.png"),
-    ];
+  Future<void> loadConquistas() async {
+    conquistas.value = (await ConquistasDao.instance.queryAllRows())!;
   }
 
   @override

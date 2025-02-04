@@ -2,96 +2,132 @@ import 'dart:math';
 import 'package:flutter/material.dart';
 
 class ConquistaFlipWidget extends StatefulWidget {
-  final String imagemPretoeBrancoPath;
-  final String imagemColoridaPath;
+  final String frontImagePath;
+  final String backImagePath;
 
   const ConquistaFlipWidget({
     Key? key,
-    required this.imagemPretoeBrancoPath,
-    required this.imagemColoridaPath,
+    required this.frontImagePath,
+    required this.backImagePath,
   }) : super(key: key);
 
   @override
-  ConquistaFlipWidgetState  createState() => ConquistaFlipWidgetState ();
+  ConquistaFlipWidgetState createState() => ConquistaFlipWidgetState();
 }
 
 class ConquistaFlipWidgetState extends State<ConquistaFlipWidget>
-    with SingleTickerProviderStateMixin {
-  late AnimationController _controller;
-  late Animation<double> _animacao;
-  bool showStar = false;
+    with TickerProviderStateMixin {
+  late AnimationController _flipController;
+  late Animation<double> _flipAnimation;
+
+  late AnimationController _explosionController;
+  late Animation<double> _explosionAnimation;
 
   @override
   void initState() {
     super.initState();
-    _controller = AnimationController(
+    _flipController = AnimationController(
       vsync: this,
-      duration: const Duration(seconds: 3),
+      duration: const Duration(seconds: 2),
     );
-
-    _animacao = Tween<double>(begin: 0, end: pi).animate(
+    _flipAnimation = Tween<double>(begin: 0, end: 6 * pi).animate(
       CurvedAnimation(
-        parent: _controller,
+        parent: _flipController,
         curve: Curves.easeInOut,
       ),
     );
 
-    _controller.addStatusListener((status) {
+    _explosionController = AnimationController(
+      vsync: this,
+      duration: const Duration(milliseconds: 500),
+    );
+    _explosionAnimation = TweenSequence<double>([
+      TweenSequenceItem(tween: Tween<double>(begin: 0, end: 0.5), weight: 100),
+      TweenSequenceItem(tween: Tween<double>(begin: 1, end: 0), weight: 50),
+    ]).animate(
+      CurvedAnimation(
+        parent: _explosionController,
+        curve: Curves.easeOut,
+      ),
+    );
+
+    _flipController.addStatusListener((status) {
       if (status == AnimationStatus.completed) {
-        setState(() {
-          showStar = true;
-        });
+        setState(() {});
+        _explosionController.forward(from: 0);
       }
     });
   }
 
   @override
   void dispose() {
-    _controller.dispose();
+    _flipController.dispose();
+    _explosionController.dispose();
     super.dispose();
   }
 
-  startFlip() {
-    setState(() {
-      showStar = false;
-    });
-    _controller.forward(from: 0);
+  void startFlip() {
+    _flipController.forward(from: 0);
   }
 
   @override
   Widget build(BuildContext context) {
     return Column(
-      mainAxisAlignment: MainAxisAlignment.center,
       children: [
         Center(
-          child: AnimatedBuilder(
-            animation: _animacao,
-            builder: (context, child) {
-              // se o valor da rotação for menor ou igual a 90° (pi/2), mostra o lado preto e branco
-              bool showFront = _animacao.value <= (pi / 2);
+          child: Stack(
+            alignment: Alignment.center,
+            children: [
+              AnimatedBuilder(
+                animation: _explosionAnimation,
+                builder: (context, child) {
+                  double scale = 1 + (_explosionAnimation.value * 0.1);
+                  double opacity = _explosionAnimation.value;
+                  return Transform.scale(
+                    scale: scale,
+                    child: Opacity(
+                      opacity: opacity,
+                      child: Container(
+                        width: 300,
+                        height: 300,
+                        decoration: BoxDecoration(
+                          shape: BoxShape.circle,
+                          color: Colors.teal.withOpacity(0.05),
+                        ),
+                      ),
+                    ),
+                  );
 
-              return Transform(
-                alignment: Alignment.center,
-                transform: Matrix4.identity()
-                  ..setEntry(3, 2, 0.001)
-                  ..rotateY(_animacao.value),
-                child: CircleAvatar(
-                  radius: 150,
-                  backgroundColor: Colors.transparent,
-                  backgroundImage: AssetImage(
-                    showFront ? widget.imagemPretoeBrancoPath : widget.imagemColoridaPath,
-                  ),
-                ),
-              );
-            },
+                },
+              ),
+              AnimatedBuilder(
+                animation: _flipAnimation,
+                builder: (context, child) {
+                  bool showFront;
+                  if (_flipController.status == AnimationStatus.completed) {
+                    showFront = false;
+                  } else {
+                    double angle = _flipAnimation.value % (2 * pi);
+                    showFront = angle <= pi;
+                  }
+                  return Transform(
+                    alignment: Alignment.center,
+                    transform: Matrix4.identity()
+                      ..setEntry(3, 2, 0.001)
+                      ..rotateY(_flipAnimation.value),
+                    child: CircleAvatar(
+                      radius: 150,
+                      backgroundColor: Colors.transparent,
+                      backgroundImage: AssetImage(
+                        showFront ? widget.frontImagePath : widget.backImagePath,
+                      ),
+                    ),
+                  );
+                },
+              ),
+            ],
           ),
         ),
-        if (showStar)
-          const Icon(
-            Icons.star,
-            size: 50,
-            color: Colors.yellowAccent,
-          ),
       ],
     );
   }
