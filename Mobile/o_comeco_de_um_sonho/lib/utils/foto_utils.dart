@@ -1,3 +1,5 @@
+import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'dart:typed_data';
 import 'package:image_picker/image_picker.dart';
@@ -44,4 +46,63 @@ class FotoUtils {
     }
     return [];
   }
+
+  static void mostrarGaleriaPopUp(BuildContext context, List<Foto> fotos, int indiceInicial) {
+    final List<GlobalKey> itemKeys = List.generate(fotos.length, (_) => GlobalKey());
+
+    final ScrollController scrollController = ScrollController();
+
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      if (indiceInicial < itemKeys.length && itemKeys[indiceInicial].currentContext != null) {
+        Scrollable.ensureVisible(
+          itemKeys[indiceInicial].currentContext!,
+          duration: const Duration(milliseconds: 300),
+        );
+      }
+    });
+
+    showDialog(
+      context: context,
+      barrierDismissible: true,
+      barrierColor: Colors.black54,
+      builder: (context) {
+        return Dialog(
+          backgroundColor: Colors.transparent,
+          insetPadding: const EdgeInsets.all(0),
+          child: Container(
+            height: MediaQuery.of(context).size.height * 0.7,
+            child: ListView.builder(
+              controller: scrollController,
+              scrollDirection: Axis.horizontal,
+              itemCount: fotos.length,
+              itemBuilder: (context, index) {
+                final foto = fotos[index];
+                return Padding(
+                  key: itemKeys[index],
+                  padding: const EdgeInsets.symmetric(horizontal: 0),
+                  child: Hero(
+                    tag: 'foto_$index',
+                    child: Container(
+                      child: foto.foto != null
+                          ? Image.memory(
+                        Uint8List.fromList(foto.foto!),
+                        height: MediaQuery.of(context).size.height * 0.8,
+                        fit: BoxFit.contain,
+                      )
+                          : Image.asset(
+                        "assets/images/placeholder.png",
+                        height: MediaQuery.of(context).size.height * 0.8,
+                        fit: BoxFit.contain,
+                      ),
+                    ),
+                  ),
+                );
+              },
+            ),
+          ),
+        );
+      },
+    );
+  }
+
 }

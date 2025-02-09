@@ -3,7 +3,9 @@ import 'dart:typed_data';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
+import 'package:o_comeco_de_um_sonho/utils/foto_utils.dart';
 import '../../../widget/ConquistaFlipWidget.dart';
+import '../../../widget/FullScreenPhotoGalleryWidget.dart';
 import 'detalhe_conquista_controller.dart';
 
 class DetalheConquistaPage extends StatelessWidget {
@@ -104,29 +106,35 @@ class DetalheConquistaPage extends StatelessWidget {
                               child: Obx(
                                     () => ListView.builder(
                                   scrollDirection: Axis.horizontal,
-                                  // Sempre adiciona um item extra para o botão de adicionar imagem
                                   itemCount: controller.imagens.length + 1,
                                   itemBuilder: (context, index) {
                                     if (index < controller.imagens.length) {
-                                      // Exibe a foto armazenada
                                       final foto = controller.imagens[index];
                                       return Padding(
                                         padding: const EdgeInsets.symmetric(horizontal: 4),
-                                        child: Container(
-                                          width: 120,
-                                          decoration: BoxDecoration(
-                                            borderRadius: BorderRadius.circular(8),
-                                            image: DecorationImage(
-                                              image: foto.foto != null
-                                                  ? MemoryImage(Uint8List.fromList(foto.foto!))
-                                                  : const AssetImage("assets/images/placeholder.png") as ImageProvider,
-                                              fit: BoxFit.cover,
+                                        child: GestureDetector(
+                                          onTap: () {
+                                            FotoUtils.mostrarGaleriaPopUp(context, controller.imagens, index);
+                                          },
+                                          child: Hero(
+                                            tag: 'foto_$index',
+                                            child: Container(
+                                              width: 120,
+                                              decoration: BoxDecoration(
+                                                color: Colors.transparent,
+                                                image: DecorationImage(
+                                                  image: foto.foto != null
+                                                      ? MemoryImage(Uint8List.fromList(foto.foto!))
+                                                      : const AssetImage("assets/images/placeholder.png")
+                                                  as ImageProvider,
+                                                  fit: BoxFit.cover,
+                                                ),
+                                              ),
                                             ),
                                           ),
                                         ),
                                       );
                                     } else {
-                                      // Último item: botão para adicionar uma nova foto
                                       return Padding(
                                         padding: const EdgeInsets.symmetric(horizontal: 4),
                                         child: GestureDetector(
