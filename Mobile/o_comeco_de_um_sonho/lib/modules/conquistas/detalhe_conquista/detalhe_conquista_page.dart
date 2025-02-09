@@ -1,12 +1,12 @@
 import 'dart:io';
 import 'dart:typed_data';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
 import 'package:o_comeco_de_um_sonho/utils/foto_utils.dart';
 import '../../../widget/ConquistaFlipWidget.dart';
 import '../../../widget/FotoItemWidget.dart';
-import '../../../widget/FullScreenPhotoGalleryWidget.dart';
 import 'detalhe_conquista_controller.dart';
 
 class DetalheConquistaPage extends StatelessWidget {
@@ -22,8 +22,12 @@ class DetalheConquistaPage extends StatelessWidget {
         FocusScope.of(context).unfocus();
       },
       child: Scaffold(
+        extendBodyBehindAppBar: true,
         appBar: AppBar(
           title: Text(''),
+          backgroundColor: Colors.transparent,
+          elevation: 0,
+          scrolledUnderElevation: 0,
         ),
         body: SingleChildScrollView(
           padding: const EdgeInsets.all(16),
@@ -31,6 +35,7 @@ class DetalheConquistaPage extends StatelessWidget {
             return Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
+                SizedBox(height: MediaQuery.of(context).padding.top + kToolbarHeight),
                 Center(
                   child: ConquistaFlipWidget(
                     key: flipKey,

@@ -50,6 +50,10 @@ class MyApp extends StatelessWidget {
         GlobalCupertinoLocalizations.delegate,
       ],
       theme: ThemeData(
+        appBarTheme: const AppBarTheme(
+          color: Colors.transparent,
+          elevation: 0,
+        ),
         scaffoldBackgroundColor: Colors.white,
         dialogBackgroundColor: Colors.white,
         canvasColor: Colors.white,
