@@ -6,6 +6,7 @@ import 'package:get/get.dart';
 import 'package:intl/intl.dart';
 import 'package:o_comeco_de_um_sonho/utils/foto_utils.dart';
 import '../../../widget/ConquistaFlipWidget.dart';
+import '../../../widget/ExperienceFieldWidget.dart';
 import '../../../widget/FotoItemWidget.dart';
 import 'detalhe_conquista_controller.dart';
 
@@ -113,8 +114,7 @@ class DetalheConquistaPage extends StatelessWidget {
                               const SizedBox(height: 8),
                               SizedBox(
                                 height: 150,
-                                child: Obx(
-                                      () => ListView.builder(
+                                child: Obx(() => ListView.builder(
                                     scrollDirection: Axis.horizontal,
                                     itemCount: controller.imagens.length + 1,
                                     itemBuilder: (context, index) {
@@ -154,27 +154,23 @@ class DetalheConquistaPage extends StatelessWidget {
                                 ),
                               ),
                               const SizedBox(height: 16),
-                              Text(
-                                "Experiência dela:",
-                                style: Theme.of(context).textTheme.labelMedium,
-                              ),
-                              TextField(
-                                decoration: const InputDecoration(hintText: "Digite a experiência dela"),
-                                onChanged: (value) {
-                                  controller.experienciaDela.value = value;
+                              Obx(() => ExperienceFieldWidget(
+                                label: "Experiência dela:",
+                                valorInicial: controller.conquista.value!.experienciaDela ?? "",
+                                onSave: (valor) {
+                                  controller.conquista.value!.experienciaDela = valor;
+                                  controller.updateConquista(controller.conquista.value!);
                                 },
-                              ),
+                              )),
                               const SizedBox(height: 16),
-                              Text(
-                                "Experiência dele:",
-                                style: Theme.of(context).textTheme.labelMedium,
-                              ),
-                              TextField(
-                                decoration: const InputDecoration(hintText: "Digite a experiência dele"),
-                                onChanged: (value) {
-                                  controller.experienciaDele.value = value;
+                              Obx(() => ExperienceFieldWidget(
+                                label: "Experiência dele:",
+                                valorInicial: controller.conquista.value!.experienciaDele ?? "",
+                                onSave: (valor) {
+                                  controller.conquista.value!.experienciaDele = valor;
+                                  controller.updateConquista(controller.conquista.value!);
                                 },
-                              ),
+                              )),
                             ],
                           ),
                       ],

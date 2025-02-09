@@ -8,6 +8,8 @@ class Conquistas {
   String? imagem;
   DateTime? dataConquista;
   String? local;
+  String? experienciaDela;
+  String? experienciaDele;
 
   Conquistas({
     this.id,
@@ -16,7 +18,9 @@ class Conquistas {
     this.ativo = false,
     this.imagem,
     this.dataConquista,
-    this.local
+    this.local,
+    this.experienciaDela,
+    this.experienciaDele
   });
 
   Map<String, dynamic> toMap() {
@@ -27,7 +31,9 @@ class Conquistas {
       'ativo': ativo ? 1 : 0,
       'imagem': imagem,
       'dataConquista': dataConquista?.toIso8601String(),
-      'local': local
+      'local': local,
+      'experienciaDela': experienciaDela,
+      'experienciaDele': experienciaDele
     };
   }
 
@@ -39,7 +45,9 @@ class Conquistas {
       ativo: map['ativo'] == 1,
       imagem: map['imagem'],
       dataConquista: map['dataConquista'] != null ? DateTime.parse(map['dataConquista']) : null,
-      local: map['local']
+      local: map['local'],
+      experienciaDela: map['experienciaDela'],
+      experienciaDele: map['experienciaDele']
     );
   }
 }

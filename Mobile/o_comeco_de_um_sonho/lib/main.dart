@@ -64,7 +64,7 @@ class MyApp extends StatelessWidget {
           background: Colors.white,
         ),
       ),
-      initialRoute: introducaoCompleted ? Routes.HOME : Routes.INTRODUCAO,
+      initialRoute: introducaoCompleted ? Routes.HOME : Routes.HOME,
       getPages: AppPages.routes,
 
     );

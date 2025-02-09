@@ -24,17 +24,14 @@ class DetalheConquistaController extends GetxController {
 
   var imagens = <Foto>[].obs;
 
-  var experienciaDela = ''.obs;
-  var experienciaDele = ''.obs;
-
   final ImagePicker _picker = ImagePicker();
 
 
   @override
-  void onInit() {
+  Future<void> onInit() async {
     super.onInit();
     conquista.value = Get.arguments;
-    loadConquistaDetalhes(conquista.value!);
+    await loadConquistaDetalhes(conquista.value!);
   }
 
   Future<void> loadConquistaDetalhes(Conquistas conquista) async {
@@ -45,8 +42,6 @@ class DetalheConquistaController extends GetxController {
     dataConquista.value = conquista.dataConquista;
     isAtivo.value = conquista.ativo;
     imagens.value = (await FotoUtils.carregarFotosConquista(conquista.id!))!;
-    experienciaDela.value = "";
-    experienciaDele.value = "";
   }
 
   Future<void> pickImagem() async {
@@ -85,9 +80,8 @@ class DetalheConquistaController extends GetxController {
     }
   }
 
-  void updateConquistas({String? her, String? him}) {
-    if (her != null) experienciaDela.value = her;
-    if (him != null) experienciaDele.value = him;
-    print('Experiência dela: ${experienciaDela.value}, dele: ${experienciaDele.value}');
+  void updateConquista(Conquistas conquista) {
+    ConquistasDao.instance.update(conquista);
+    Get.find<ConquistasController>().loadConquistas();
   }
 }

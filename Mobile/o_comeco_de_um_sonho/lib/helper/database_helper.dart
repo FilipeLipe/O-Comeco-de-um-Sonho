@@ -57,7 +57,9 @@ class DatabaseHelper {
         ativo INTEGER NOT NULL,
         imagem TEXT,
         dataConquista TEXT,
-        local TEXT
+        local TEXT,
+        experienciaDela TEXT,
+        experienciaDele TEXT
       )
     ''');
 
