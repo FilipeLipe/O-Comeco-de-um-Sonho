@@ -4,6 +4,7 @@ import 'package:image_picker/image_picker.dart';
 import 'package:o_comeco_de_um_sonho/modules/conquistas/conquistas_controller.dart';
 
 import '../../../data/dao/conquistas_dao.dart';
+import '../../../data/dao/fotos_dao.dart';
 import '../../../data/models/Conquistas.dart';
 import '../../../data/models/Foto.dart';
 import '../../../utils/foto_utils.dart';
@@ -58,6 +59,14 @@ class DetalheConquistaController extends GetxController {
       imagens.value = (await FotoUtils.carregarFotosConquista(conquista.value!.id!))!;
     }
   }
+
+  Future<void> deletarImagem(int index) async {
+    final foto = imagens.removeAt(index);
+    if (foto.id != null) {
+      await FotosDao.instance.delete(foto.id!);
+    }
+  }
+
 
   Future<bool> ativarPin() async {
     if (dataConquista.value != null) {
