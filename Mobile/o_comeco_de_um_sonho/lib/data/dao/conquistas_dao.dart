@@ -1,6 +1,6 @@
 import 'package:sqflite/sqflite.dart';
 import '../../helper/database_helper.dart';
-import '../models/conquistas.dart';
+import '../models/Conquistas.dart';
 
 class ConquistasDao {
   static final table = 'tb_conquistas';
@@ -96,4 +96,5 @@ class ConquistasDao {
     Database? db = await instance.database;
     return await db?.delete(table);
   }
+
 }

@@ -1,8 +1,8 @@
 class Memorias {
-  final int? id;
-  final DateTime data;
-  final String descricao;
-  final String? imagePath;
+  int? id;
+  DateTime data;
+  String descricao;
+  String? imagePath;
 
   Memorias({
     this.id,

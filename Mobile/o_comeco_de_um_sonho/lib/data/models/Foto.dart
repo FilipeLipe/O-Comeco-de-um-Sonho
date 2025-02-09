@@ -1,26 +1,24 @@
-import 'dart:typed_data';
 
 class Foto {
   int? id;
-  Uint8List? foto;
+  List<int>? foto;
   String? descricao;
   String? dataCaptura;
+  int? idConquista;
+  int? idDestino;
+  int? idInfoCasal;
+  int? idMemoria;
 
   Foto({
     this.id,
     this.foto,
     this.descricao,
     this.dataCaptura,
+    this.idConquista,
+    this.idDestino,
+    this.idInfoCasal,
+    this.idMemoria,
   });
-
-  factory Foto.fromJson(Map<String, dynamic> json) {
-    return Foto(
-      id: json['id'],
-      foto: json['foto'],
-      descricao: json['descricao'],
-      dataCaptura: json['dataCaptura'],
-    );
-  }
 
   Map<String, dynamic> toJson() {
     return {
@@ -28,20 +26,23 @@ class Foto {
       'foto': foto,
       'descricao': descricao,
       'dataCaptura': dataCaptura,
+      'idConquista': idConquista,
+      'idDestino': idDestino,
+      'idInfoCasal': idInfoCasal,
+      'idMemoria': idMemoria,
     };
   }
 
-  Foto copyWith({
-    int? id,
-    Uint8List? foto,
-    String? descricao,
-    String? dataCaptura,
-  }) {
+  factory Foto.fromJson(Map<String, dynamic> json) {
     return Foto(
-      id: id ?? this.id,
-      foto: foto ?? this.foto,
-      descricao: descricao ?? this.descricao,
-      dataCaptura: dataCaptura ?? this.dataCaptura,
+      id: json['id'],
+      foto: json['foto'] != null ? List<int>.from(json['foto']) : null,
+      descricao: json['descricao'],
+      dataCaptura: json['dataCaptura'],
+      idConquista: json['idConquista'],
+      idDestino: json['idDestino'],
+      idInfoCasal: json['idInfoCasal'],
+      idMemoria: json['idMemoria'],
     );
   }
 }

@@ -1,11 +1,11 @@
 class Destinos {
-  final int? id;
-  final String nome;
-  final String descricao;
-  final double latitude;
-  final double longitude;
-  final String? imagePath;
-  final bool visitado;
+  int? id;
+  String nome;
+  String descricao;
+  double latitude;
+  double longitude;
+  String? imagePath;
+  bool visitado;
 
   Destinos({
     this.id,

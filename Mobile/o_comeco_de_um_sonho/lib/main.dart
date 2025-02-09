@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:o_comeco_de_um_sonho/data/models/conquistas.dart';
+import 'package:o_comeco_de_um_sonho/data/models/Conquistas.dart';
 import 'package:o_comeco_de_um_sonho/routes/app_pages.dart';
 import 'package:o_comeco_de_um_sonho/routes/app_routes.dart';
 import 'package:shared_preferences/shared_preferences.dart';

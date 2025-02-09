@@ -1,8 +1,8 @@
 class Calendario {
-  final int? id;
-  final String titulo;
-  final DateTime data;
-  final String? descricao;
+  int? id;
+  String titulo;
+  DateTime data;
+  String? descricao;
 
   Calendario({
     this.id,

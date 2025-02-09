@@ -1,6 +1,6 @@
 import 'package:sqflite/sqflite.dart';
 import '../../helper/database_helper.dart';
-import '../models/destinos.dart';
+import '../models/Destinos.dart';
 
 class DestinosDao {
   static final table = 'tb_destinos';

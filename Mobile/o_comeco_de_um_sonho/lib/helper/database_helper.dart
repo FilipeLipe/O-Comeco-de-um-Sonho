@@ -28,16 +28,20 @@ class DatabaseHelper {
 
   static Future _onCreate(Database db, int version) async {
     await db.execute('''
-      CREATE TABLE IF NOT EXISTS tb_fotos (
+      CREATE TABLE IF NOT EXISTS tb_fotos(
         id INTEGER PRIMARY KEY AUTOINCREMENT,
         foto BLOB,
         descricao TEXT,
-        data_captura TEXT
+        dataCaptura TEXT,
+        idConquista INTEGER,
+        idDestino INTEGER,
+        idInfoCasal INTEGER,
+        idMemoria INTEGER
       )
     ''');
 
     await db.execute('''
-      CREATE TABLE tb_memorias(
+      CREATE TABLE IF NOT EXISTS tb_memorias(
         id INTEGER PRIMARY KEY AUTOINCREMENT,
         data TEXT NOT NULL,
         descricao TEXT,
@@ -46,7 +50,7 @@ class DatabaseHelper {
     ''');
 
     await db.execute('''
-      CREATE TABLE tb_conquistas(
+      CREATE TABLE IF NOT EXISTS tb_conquistas(
         id INTEGER PRIMARY KEY AUTOINCREMENT,
         titulo TEXT NOT NULL,
         descricao TEXT,
@@ -58,7 +62,7 @@ class DatabaseHelper {
     ''');
 
     await db.execute('''
-      CREATE TABLE tb_destinos(
+      CREATE TABLE IF NOT EXISTS tb_destinos(
         id INTEGER PRIMARY KEY AUTOINCREMENT,
         nome TEXT NOT NULL,
         descricao TEXT,
@@ -70,7 +74,7 @@ class DatabaseHelper {
     ''');
 
     await db.execute('''
-      CREATE TABLE tb_calendarioio(
+      CREATE TABLE IF NOT EXISTS tb_calendarioio(
         id INTEGER PRIMARY KEY AUTOINCREMENT,
         titulo TEXT NOT NULL,
         data TEXT NOT NULL,
@@ -79,7 +83,7 @@ class DatabaseHelper {
     ''');
 
     await db.execute('''
-      CREATE TABLE tb_info_casal(
+      CREATE TABLE IF NOT EXISTS tb_info_casal(
         id INTEGER PRIMARY KEY AUTOINCREMENT,
         dataInicio TEXT NOT NULL,
         textoCasal TEXT

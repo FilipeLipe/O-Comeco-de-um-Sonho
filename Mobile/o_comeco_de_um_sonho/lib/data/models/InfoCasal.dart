@@ -1,7 +1,7 @@
 class InfoCasal {
-  final int? id;
-  final DateTime dataInicio;
-  final String? textoCasal;
+  int? id;
+  DateTime dataInicio;
+  String? textoCasal;
 
   InfoCasal({
     this.id,

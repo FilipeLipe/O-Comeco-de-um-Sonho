@@ -4,9 +4,11 @@ import 'package:flutter/material.dart';
 class ConquistaFlipWidget extends StatefulWidget {
   final String frontImagePath;
   final String backImagePath;
+  final bool isAtivo;
 
   const ConquistaFlipWidget({
     Key? key,
+    required this.isAtivo,
     required this.frontImagePath,
     required this.backImagePath,
   }) : super(key: key);
@@ -104,7 +106,7 @@ class ConquistaFlipWidgetState extends State<ConquistaFlipWidget>
                 animation: _flipAnimation,
                 builder: (context, child) {
                   bool showFront;
-                  if (_flipController.status == AnimationStatus.completed) {
+                  if (_flipController.status == AnimationStatus.completed || !widget.isAtivo) {
                     showFront = false;
                   } else {
                     double angle = _flipAnimation.value % (2 * pi);

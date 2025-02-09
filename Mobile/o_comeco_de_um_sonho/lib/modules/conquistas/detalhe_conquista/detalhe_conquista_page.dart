@@ -1,4 +1,5 @@
 import 'dart:io';
+import 'dart:typed_data';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
@@ -26,8 +27,9 @@ class DetalheConquistaPage extends StatelessWidget {
               Center(
                 child: ConquistaFlipWidget(
                   key: flipKey,
-                  frontImagePath: "assets/Pin/Acampar-pretoebranco.png",
-                  backImagePath: "assets/Pin/Acampar.png",
+                  isAtivo: !controller.isAtivo.value,
+                  frontImagePath: controller.conquistaImagePretoeBrancoPath.value,
+                  backImagePath: controller.conquistaImagePath.value,
                 ),
               ),
               const SizedBox(height: 16),
@@ -72,8 +74,8 @@ class DetalheConquistaPage extends StatelessWidget {
                             ),
                             const SizedBox(height: 8),
                             ElevatedButton(
-                              onPressed: () {
-                                if(controller.activatePin()){
+                              onPressed: () async {
+                                if(await controller.ativarPin()){
                                   flipKey.currentState?.startFlip();
                                 };
                               },
@@ -99,44 +101,49 @@ class DetalheConquistaPage extends StatelessWidget {
                             const SizedBox(height: 8),
                             SizedBox(
                               height: 150,
-                              child: ListView.builder(
-                                scrollDirection: Axis.horizontal,
-                                itemCount: controller.imagens.length + 1,
-                                itemBuilder: (context, index) {
-                                  if (index < controller.imagens.length) {
-                                    String imgPath = controller.imagens[index];
-                                    return Padding(
-                                      padding: const EdgeInsets.symmetric(horizontal: 4),
-                                      child: Container(
-                                        width: 120,
-                                        decoration: BoxDecoration(
-                                          borderRadius: BorderRadius.circular(8),
-                                          image: DecorationImage(
-                                            image: imgPath.startsWith("assets/")
-                                                ? AssetImage(imgPath)
-                                                : FileImage(File(imgPath)) as ImageProvider,
-                                            fit: BoxFit.cover,
-                                          ),
-                                        ),
-                                      ),
-                                    );
-                                  } else {
-                                    return Padding(
-                                      padding: const EdgeInsets.symmetric(horizontal: 4),
-                                      child: GestureDetector(
-                                        onTap: controller.pickImagem,
+                              child: Obx(
+                                    () => ListView.builder(
+                                  scrollDirection: Axis.horizontal,
+                                  // Sempre adiciona um item extra para o botão de adicionar imagem
+                                  itemCount: controller.imagens.length + 1,
+                                  itemBuilder: (context, index) {
+                                    if (index < controller.imagens.length) {
+                                      // Exibe a foto armazenada
+                                      final foto = controller.imagens[index];
+                                      return Padding(
+                                        padding: const EdgeInsets.symmetric(horizontal: 4),
                                         child: Container(
                                           width: 120,
                                           decoration: BoxDecoration(
-                                            color: Colors.grey[300],
                                             borderRadius: BorderRadius.circular(8),
+                                            image: DecorationImage(
+                                              image: foto.foto != null
+                                                  ? MemoryImage(Uint8List.fromList(foto.foto!))
+                                                  : const AssetImage("assets/images/placeholder.png") as ImageProvider,
+                                              fit: BoxFit.cover,
+                                            ),
                                           ),
-                                          child: const Icon(Icons.add, size: 40, color: Colors.black),
                                         ),
-                                      ),
-                                    );
-                                  }
-                                },
+                                      );
+                                    } else {
+                                      // Último item: botão para adicionar uma nova foto
+                                      return Padding(
+                                        padding: const EdgeInsets.symmetric(horizontal: 4),
+                                        child: GestureDetector(
+                                          onTap: controller.pickImagem,
+                                          child: Container(
+                                            width: 120,
+                                            decoration: BoxDecoration(
+                                              color: Colors.grey[300],
+                                              borderRadius: BorderRadius.circular(8),
+                                            ),
+                                            child: const Icon(Icons.add, size: 40, color: Colors.black),
+                                          ),
+                                        ),
+                                      );
+                                    }
+                                  },
+                                ),
                               ),
                             ),
                             const SizedBox(height: 16),

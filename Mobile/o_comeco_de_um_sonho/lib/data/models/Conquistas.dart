@@ -1,11 +1,13 @@
+import 'dart:convert';
+
 class Conquistas {
-  final int? id;
-  final String titulo;
-  final String descricao;
-  final bool ativo;
-  final String? imagem;
-  final DateTime? dataConquista;
-  final String? local;
+  int? id;
+  String titulo;
+  String descricao;
+  bool ativo;
+  String? imagem;
+  DateTime? dataConquista;
+  String? local;
 
   Conquistas({
     this.id,
@@ -14,7 +16,7 @@ class Conquistas {
     this.ativo = false,
     this.imagem,
     this.dataConquista,
-    this.local,
+    this.local
   });
 
   Map<String, dynamic> toMap() {
@@ -25,7 +27,7 @@ class Conquistas {
       'ativo': ativo ? 1 : 0,
       'imagem': imagem,
       'dataConquista': dataConquista?.toIso8601String(),
-      'local': local,
+      'local': local
     };
   }
 
@@ -37,7 +39,7 @@ class Conquistas {
       ativo: map['ativo'] == 1,
       imagem: map['imagem'],
       dataConquista: map['dataConquista'] != null ? DateTime.parse(map['dataConquista']) : null,
-      local: map['local'],
+      local: map['local']
     );
   }
 }

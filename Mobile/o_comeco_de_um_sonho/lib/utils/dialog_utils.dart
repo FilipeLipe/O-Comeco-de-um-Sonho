@@ -3,7 +3,6 @@ import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 
-
 class DialogUtils {
 
   DialogUtils(){

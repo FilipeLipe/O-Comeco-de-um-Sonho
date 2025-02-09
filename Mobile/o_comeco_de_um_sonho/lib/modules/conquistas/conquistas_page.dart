@@ -18,28 +18,26 @@ class ConquistasPage extends StatefulWidget {
 
 class _ConquistasPageState extends State<ConquistasPage> {
 
-  bool isGridMode = false;
-
   @override
   Widget build(BuildContext context) {
 
     final ConquistasController controller = Get.find<ConquistasController>();
-    return Scaffold(
+    return Obx(() => Scaffold(
       appBar: AppBar(
         title: const Text("Conquistas"),
         actions: [
           IconButton(
-            icon: Icon(isGridMode ? Icons.slideshow : Icons.grid_view),
+            icon: Icon(controller.isGridMode.value ? Icons.slideshow : Icons.grid_view),
             onPressed: () {
               setState(() {
-                isGridMode = !isGridMode;
+                controller.isGridMode.value = !controller.isGridMode.value;
               });
             },
-            tooltip: isGridMode ? "Modo Slider" : "Modo Grade",
+            tooltip: controller.isGridMode.value ? "Modo Slider" : "Modo Grade",
           ),
         ],
       ),
-      body: isGridMode ? buildGridView(controller) : buildSliderView(controller),
+      body: controller.isGridMode.value ? buildGridView(controller) : buildSliderView(controller),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
           Get.toNamed(Routes.ADD_CONQUISTA);
@@ -47,11 +45,11 @@ class _ConquistasPageState extends State<ConquistasPage> {
         child: const Icon(Icons.add),
         tooltip: "Adicionar Novo Pin",
       ),
-    );
+    ));
   }
 
   Widget buildSliderView(ConquistasController controller) {
-    return PageView.builder(
+    return Obx(() => PageView.builder(
       itemCount: controller.conquistas.value.length,
       itemBuilder: (context, index) {
         final conquista = controller.conquistas.value[index];
@@ -67,11 +65,11 @@ class _ConquistasPageState extends State<ConquistasPage> {
           ),
         );
       },
-    );
+    ));
   }
 
   Widget buildGridView(ConquistasController controller) {
-    return GridView.builder(
+    return Obx(() => GridView.builder(
       padding: const EdgeInsets.all(8.0),
       itemCount: controller.conquistas.value.length,
       gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
@@ -91,6 +89,6 @@ class _ConquistasPageState extends State<ConquistasPage> {
           },
         );
       },
-    );
+    ));
   }
 }
