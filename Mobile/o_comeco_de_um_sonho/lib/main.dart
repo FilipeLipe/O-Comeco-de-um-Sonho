@@ -1,4 +1,9 @@
+import 'dart:convert';
+import 'dart:io';
+
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+import 'package:path_provider/path_provider.dart';
 import 'package:get/get.dart';
 import 'package:o_comeco_de_um_sonho/data/models/Conquistas.dart';
 import 'package:o_comeco_de_um_sonho/routes/app_pages.dart';
@@ -17,6 +22,7 @@ void main() async {
   bool introducaoCompleted = prefs.getBool('introducaoCompleted') ?? false;
 
   await initDatabase();
+  copiarAssetsParaDiretorioLocal();
 
   runApp(MyApp(introducaoCompleted: introducaoCompleted));
 }
@@ -77,8 +83,6 @@ Future<void> insertDados() async {
 }
 
 
-
-
 Future<void> insertConquistas() async {
   final count = await ConquistasDao.instance.queryRowCount();
   if (count == 0) {
@@ -111,5 +115,33 @@ Future<void> insertConquistas() async {
     print("Dados iniciais de conquistas inseridos.");
   } else {
     print("A tabela de conquistas já possui $count registros.");
+  }
+}
+
+
+Future<void> copiarAssetsParaDiretorioLocal() async {
+  final Directory diretorioApp = await getApplicationDocumentsDirectory();
+  final String caminhoPastaLocal = '${diretorioApp.path}/Pin';
+  final Directory pastaLocal = Directory(caminhoPastaLocal);
+
+  if (!await pastaLocal.exists()) {
+    await pastaLocal.create(recursive: true);
+  }
+
+  final String manifestContent = await rootBundle.loadString('AssetManifest.json');
+  final Map<String, dynamic> manifestMap = json.decode(manifestContent);
+
+  final List<String> caminhosAssets = manifestMap.keys
+      .where((String key) => key.startsWith('assets/Pin/'))
+      .toList();
+
+  for (String caminhoAsset in caminhosAssets) {
+    final String nomeArquivo = caminhoAsset.split('/').last;
+
+    final ByteData bytes = await rootBundle.load(caminhoAsset);
+    final List<int> listaBytes = bytes.buffer.asUint8List();
+
+    final File arquivoLocal = File('$caminhoPastaLocal/$nomeArquivo');
+    await arquivoLocal.writeAsBytes(listaBytes, flush: true);
   }
 }

@@ -13,7 +13,7 @@ class MapaPage extends StatelessWidget {
       ),
       body: FlutterMap(
         options: MapOptions(
-          center: LatLng(-23.550520, -46.633308), // Coordenadas de São Paulo, por exemplo
+          center: LatLng(-23.550520, -46.633308),
           zoom: 13.0,
         ),
       ),

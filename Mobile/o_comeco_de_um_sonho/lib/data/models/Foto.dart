@@ -1,4 +1,3 @@
-
 class Foto {
   int? id;
   List<int>? foto;

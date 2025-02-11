@@ -2,7 +2,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import '../../data/models/Memorias.dart';
-import '../../widget/CustomCard.dart';
 
 class MemoriasPage extends StatefulWidget {
   const MemoriasPage({Key? key}) : super(key: key);
@@ -28,25 +27,7 @@ class _MemoriasPageState extends State<MemoriasPage> {
       appBar: AppBar(title: const Text("Lembranças")),
       body: Column(
         children: [
-          Expanded(
-            child: ListView.builder(
-              itemCount: memories.length,
-              itemBuilder: (context, index) {
-                final memory = memories[index];
-                return CustomCard(
-                  onTap: () {
-                  },
-                  child: ListTile(
-                    title: Text(memory.descricao),
-                    subtitle: Text(memory.data.toLocal().toString().split(' ')[0]),
-                    leading: memory.imagePath != null
-                        ? Image.asset(memory.imagePath!, width: 50, height: 50, fit: BoxFit.cover)
-                        : const Icon(Icons.photo),
-                  ),
-                );
-              },
-            ),
-          ),
+
         ],
       ),
       floatingActionButton: FloatingActionButton(

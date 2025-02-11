@@ -53,28 +53,28 @@ class DialogUtils {
   }
 
   static Future<void> showLoadingDialog(String message) async {
-    Future.delayed(Duration(milliseconds: 10), () {
+    // Garante que o diálogo seja exibido depois do frame atual ser renderizado
+    WidgetsBinding.instance.addPostFrameCallback((_) {
       Get.dialog(
-        WillPopScope(
-          onWillPop: () async => false,
+        PopScope(
+          // onPopInvokedWithResult: () async => false,
           child: AlertDialog(
-            contentPadding: EdgeInsets.all(30),
+            contentPadding: const EdgeInsets.all(30),
             content: Row(
               mainAxisSize: MainAxisSize.min,
-              mainAxisAlignment: MainAxisAlignment.start,
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
                 Transform.rotate(
                   angle: -10 * (3.141592653589793238 / 180),
-                  child: CircularProgressIndicator(
+                  child: const CircularProgressIndicator(
                     color: Colors.teal,
                   ),
                 ),
-                SizedBox(width: 16),
+                const SizedBox(width: 16),
                 Expanded(
                   child: Text(
                     message,
-                    style: TextStyle(fontSize: 16),
+                    style: const TextStyle(fontSize: 16),
                   ),
                 ),
               ],
@@ -83,14 +83,14 @@ class DialogUtils {
         ),
         barrierDismissible: false,
       );
+    });
 
-      Future.delayed(Duration(seconds: 10), () {
-        if (Get.isDialogOpen == true) {
-          Get.back(); 
-          print('O processo demorou mais que 10 segundos.');
-          showAlert("Erro GPS", "Não Conseguimos pegar sua posição via GPS, favor digitar manualmente");
-        }
-      });
+    Future.delayed(const Duration(seconds: 10), () {
+      if (Get.isDialogOpen == true) {
+        Get.back();
+        print('O processo demorou mais que 10 segundos.');
+        showAlert("Erro Criação", "Não Conseguimos criar sua conquista");
+      }
     });
   }
 }

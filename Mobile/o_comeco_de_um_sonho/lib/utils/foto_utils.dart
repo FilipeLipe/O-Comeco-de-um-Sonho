@@ -1,11 +1,15 @@
+
+import 'package:image/image.dart' as img;
+import 'dart:io';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'dart:typed_data';
 import 'package:image_picker/image_picker.dart';
-import 'dart:io';
+import 'package:path_provider/path_provider.dart';
 import '../data/dao/fotos_dao.dart';
 import '../data/models/Foto.dart';
+import 'dart:typed_data';
 
 class FotoUtils {
   var imagens = <String>[].obs;
@@ -37,6 +41,48 @@ class FotoUtils {
 
     await FotosDao.instance.insert(novaFoto);
 
+  }
+
+
+  static Future<Map<String, String>> salvarImagemNoDiretorioPin(String caminhoFoto, String nomeArquivo) async {
+    final Directory diretorio = await getApplicationDocumentsDirectory();
+
+    final String novoDiretorioPath = '${diretorio.path}/Pin';
+    final Directory novoDiretorio = Directory(novoDiretorioPath);
+
+    if (!await novoDiretorio.exists()) {
+      await novoDiretorio.create(recursive: true);
+    }
+
+    final String caminhoColorido = '$novoDiretorioPath/$nomeArquivo.png';
+    final String caminhoPretoebranco = '$novoDiretorioPath/${nomeArquivo}-pretoebranco.png';
+
+    final File arquivoOriginal = File(caminhoFoto);
+    final File arquivoColorido = await arquivoOriginal.copy(caminhoColorido);
+
+
+    Uint8List bytesImagem = Uint8List.fromList(await arquivoOriginal.readAsBytes());
+    final img.Image? imagemOriginal = img.decodeImage(bytesImagem);
+    if (imagemOriginal == null) {
+      throw Exception("Falha ao decodificar a imagem.");
+    }
+
+    final img.Image imagemPB = img.grayscale(imagemOriginal);
+
+    final List<int> bytesPB = img.encodePng(imagemPB);
+
+    final File arquivoPretoebranco = File(caminhoPretoebranco);
+    await arquivoPretoebranco.writeAsBytes(bytesPB);
+
+    return {
+      "colorido": caminhoColorido,
+      "pretoebranco": caminhoPretoebranco,
+    };
+  }
+
+  static Future<String> getLocalImagePath(String nomeImagem) async {
+    final Directory diretorio = await getApplicationDocumentsDirectory();
+    return '${diretorio.path}/Pin/$nomeImagem.png';
   }
 
   static Future<List<Foto>?> carregarFotosConquista(int idConquista) async {
