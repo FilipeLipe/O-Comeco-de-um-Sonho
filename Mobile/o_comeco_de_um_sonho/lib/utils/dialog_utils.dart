@@ -53,11 +53,9 @@ class DialogUtils {
   }
 
   static Future<void> showLoadingDialog(String message) async {
-    // Garante que o diálogo seja exibido depois do frame atual ser renderizado
     WidgetsBinding.instance.addPostFrameCallback((_) {
       Get.dialog(
         PopScope(
-          // onPopInvokedWithResult: () async => false,
           child: AlertDialog(
             contentPadding: const EdgeInsets.all(30),
             content: Row(
@@ -84,13 +82,6 @@ class DialogUtils {
         barrierDismissible: false,
       );
     });
-
-    Future.delayed(const Duration(seconds: 10), () {
-      if (Get.isDialogOpen == true) {
-        Get.back();
-        print('O processo demorou mais que 10 segundos.');
-        showAlert("Erro Criação", "Não Conseguimos criar sua conquista");
-      }
-    });
   }
+
 }

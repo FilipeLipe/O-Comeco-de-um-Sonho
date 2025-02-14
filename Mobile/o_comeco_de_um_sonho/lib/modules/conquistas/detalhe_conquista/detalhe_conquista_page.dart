@@ -38,12 +38,12 @@ class DetalheConquistaPage extends StatelessWidget {
               children: [
                 SizedBox(height: MediaQuery.of(context).padding.top + kToolbarHeight),
                 Center(
-                  child: ConquistaFlipWidget(
+                  child: Obx(() => ConquistaFlipWidget(
                     key: flipKey,
                     isAtivo: !controller.isAtivo.value,
                     frontImagePath: controller.conquistaImagePretoeBrancoPath.value,
                     backImagePath: controller.conquistaImagePath.value,
-                  ),
+                  )),
                 ),
                 const SizedBox(height: 16),
                 Center(

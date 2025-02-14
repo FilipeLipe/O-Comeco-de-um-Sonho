@@ -50,7 +50,7 @@ class AddConquistaPage extends StatelessWidget {
               }),
               const SizedBox(height: 20),
               Text(
-                "Título:",
+                "Título*:",
                 style: Theme.of(context).textTheme.labelMedium,
               ),
               const SizedBox(height: 8),

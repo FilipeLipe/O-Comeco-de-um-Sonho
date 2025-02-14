@@ -2,7 +2,7 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:o_comeco_de_um_sonho/utils/foto_utils.dart';
 
-class CustomPinGrid extends StatelessWidget {
+class CustomPinGrid extends StatefulWidget {
   final String titulo;
   final String imagePath;
   final bool ativo;
@@ -16,14 +16,28 @@ class CustomPinGrid extends StatelessWidget {
     required this.onTap,
   }) : super(key: key);
 
-  Future<String> _obterCaminhoImagem() async {
-    return FotoUtils.getLocalImagePath(ativo ? imagePath : imagePath + "-pretoebranco");
+  @override
+  _CustomPinGridState createState() => _CustomPinGridState();
+}
+
+class _CustomPinGridState extends State<CustomPinGrid> {
+  late Future<String> _futureImagem;
+
+  @override
+  void initState() {
+    super.initState();
+    _futureImagem = _obterCaminhoImagem();
   }
 
+  Future<String> _obterCaminhoImagem() async {
+    return FotoUtils.getLocalImagePath(widget.ativo
+        ? widget.imagePath
+        : widget.imagePath + "-pretoebranco");
+  }
   @override
   Widget build(BuildContext context) {
     return FutureBuilder<String>(
-      future: _obterCaminhoImagem(),
+      future: _futureImagem,
       builder: (context, snapshot) {
         if (snapshot.connectionState == ConnectionState.waiting) {
           return SizedBox(
@@ -32,14 +46,14 @@ class CustomPinGrid extends StatelessWidget {
             child: Center(child: CircularProgressIndicator()),
           );
         }
-        final String caminhoImagem = snapshot.hasData ? snapshot.data! : "assets/Pin/${ativo ? imagePath : imagePath + "-pretoebranco"}.png";
+        final String caminhoImagem = snapshot.hasData ? snapshot.data! : "assets/Pin/${widget.ativo ? widget.imagePath : widget.imagePath + "-pretoebranco"}.png";
 
         final ImageProvider imageProvider = caminhoImagem.startsWith("assets/")
             ? AssetImage(caminhoImagem)
             : FileImage(File(caminhoImagem));
 
         return GestureDetector(
-          onTap: onTap,
+          onTap: widget.onTap,
           child: SizedBox(
             width: 100,
             height: 120,
@@ -65,14 +79,14 @@ class CustomPinGrid extends StatelessWidget {
                     decoration: BoxDecoration(
                       color: Colors.black.withOpacity(0.9),
                       border: Border.all(
-                        color: ativo ? Colors.teal : Colors.transparent,
+                        color: widget.ativo ? Colors.teal : Colors.transparent,
                         width: 2,
                       ),
                       borderRadius: BorderRadius.circular(12),
                     ),
                     child: Center(
                       child: Text(
-                        titulo,
+                        widget.titulo,
                         style: const TextStyle(
                           color: Colors.white,
                           fontSize: 12,

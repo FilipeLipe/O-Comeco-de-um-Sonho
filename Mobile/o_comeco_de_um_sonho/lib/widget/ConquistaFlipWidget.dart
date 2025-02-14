@@ -1,3 +1,4 @@
+import 'dart:io';
 import 'dart:math';
 import 'package:flutter/material.dart';
 
@@ -120,9 +121,7 @@ class ConquistaFlipWidgetState extends State<ConquistaFlipWidget>
                     child: CircleAvatar(
                       radius: 150,
                       backgroundColor: Colors.transparent,
-                      backgroundImage: AssetImage(
-                        showFront ? widget.frontImagePath : widget.backImagePath,
-                      ),
+                      backgroundImage: FileImage(File(showFront ? widget.frontImagePath : widget.backImagePath))
                     ),
                   );
                 },

@@ -1,5 +1,6 @@
 
 import 'package:diacritic/diacritic.dart';
+import 'package:flutter/foundation.dart';
 import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:o_comeco_de_um_sonho/data/dao/conquistas_dao.dart';
@@ -45,16 +46,19 @@ class AddConquistaController extends GetxController {
   }
 
   Future<void> salvarConquista() async {
-
-    if (imagem != null) {
-      await DialogUtils.showLoadingDialog("Criando Conquista");
-      conquista.value!.imagem = removeDiacritics(conquista.value!.titulo.trim().replaceAll(" ", ""));
-      await FotoUtils.salvarImagemNoDiretorioPin(imagem!.path, conquista.value!.imagem!);
-      ConquistasDao.instance.insert(conquista.value!);
-      Get.find<ConquistasController>().loadConquistas();
-      Get.until((route) => route.settings.name == Routes.CONQUISTAS);
+    try{
+      if (imagem != null) {
+        DialogUtils.showLoadingDialog("Criando Conquista");
+        await Future.delayed(Duration(milliseconds: 1000));
+        conquista.value!.imagem = removeDiacritics(conquista.value!.titulo.trim().replaceAll(" ", ""));
+        FotoUtils.salvarImagemNoDiretorioPin(imagem!.path, conquista.value!);
+      }
+    }catch(Ex){
+      if (Get.isDialogOpen == true) {
+        Get.back();
+      }
+      DialogUtils.showAlert("Erro Criação", "Não Conseguimos criar sua conquista");
     }
-
   }
 
   Future<bool> camposPreenchidos() async {
@@ -63,10 +67,10 @@ class AddConquistaController extends GetxController {
       return false;
     }
 
-    if (conquista.value?.descricao.trim().isEmpty ?? true) {
-      Get.snackbar("Atenção", "Preencha a descrição");
-      return false;
-    }
+    // if (conquista.value?.descricao.trim().isEmpty ?? true) {
+    //   Get.snackbar("Atenção", "Preencha a descrição");
+    //   return false;
+    // }
 
     if (imagem == null) {
       Get.snackbar("Atenção", "Escolha uma imagem");
