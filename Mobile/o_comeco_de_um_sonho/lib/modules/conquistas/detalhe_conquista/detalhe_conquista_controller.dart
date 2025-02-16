@@ -36,8 +36,8 @@ class DetalheConquistaController extends GetxController {
 
   Future<void> loadConquistaDetalhes(Conquistas conquista) async {
     conquistaTitle.value = conquista.titulo;
-    conquistaImagePath.value = await FotoUtils.getLocalImagePath(conquista.imagem!);
-    conquistaImagePretoeBrancoPath.value =  await FotoUtils.getLocalImagePath(conquista.imagem!+ "-pretoebranco");
+    conquistaImagePath.value = conquista.imagemColorido!;
+    conquistaImagePretoeBrancoPath.value =  conquista.imagemPretoeBranco!;
     conquistaDescricao.value = conquista.descricao;
     dataConquista.value = conquista.dataConquista;
     isAtivo.value = conquista.ativo;

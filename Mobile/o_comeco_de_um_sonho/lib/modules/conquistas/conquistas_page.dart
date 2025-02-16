@@ -56,9 +56,7 @@ class _ConquistasPageState extends State<ConquistasPage> {
         return Padding(
           padding: const EdgeInsets.all(8.0),
           child: ConquistasCard(
-            titulo: conquista.titulo,
-            imagePath: conquista.imagem!,
-            ativo: conquista.ativo,
+            conquista: conquista,
             onTap: () {
               Get.toNamed(Routes.DETALHE_CONQUISTA, arguments: conquista);
             },
@@ -81,9 +79,7 @@ class _ConquistasPageState extends State<ConquistasPage> {
       itemBuilder: (context, index) {
         final conquista = controller.conquistas.value[index];
         return CustomPinGrid(
-          titulo: conquista.titulo,
-          imagePath: conquista.imagem!,
-          ativo: conquista.ativo,
+          conquista: conquista,
           onTap: () {
             Get.toNamed(Routes.DETALHE_CONQUISTA, arguments: conquista);
           },

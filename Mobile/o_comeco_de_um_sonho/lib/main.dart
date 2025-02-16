@@ -89,26 +89,28 @@ Future<void> insertConquistas() async {
 
     final List<Conquistas> conquistasIniciais = [];
 
-    conquistasIniciais.add(Conquistas(titulo: "Acampar", descricao: "Meta para voar", ativo: false, imagem: "Acampar"));
-    conquistasIniciais.add(Conquistas(titulo: "AsaDelta", descricao: "Meta para saltar", ativo: true, imagem: "AsaDelta"));
-    conquistasIniciais.add(Conquistas(titulo: "Balao", descricao: "Meta para saltar", ativo: false, imagem: "Balao"));
-    conquistasIniciais.add(Conquistas(titulo: "Braunas", descricao: "Meta para voar", ativo: false, imagem: "Braunas"));
-    conquistasIniciais.add(Conquistas(titulo: "Caiaque", descricao: "Meta para saltar", ativo: true, imagem: "Caiaque"));
-    conquistasIniciais.add(Conquistas(titulo: "CampCross", descricao: "Meta para saltar", ativo: false, imagem: "CampCross"));
-    conquistasIniciais.add(Conquistas(titulo: "Contorno", descricao: "Meta para voar", ativo: false, imagem: "Contorno"));
-    conquistasIniciais.add(Conquistas(titulo: "Escalada", descricao: "Meta para saltar", ativo: true, imagem: "Escalada"));
-    conquistasIniciais.add(Conquistas(titulo: "Estadio", descricao: "Meta para saltar", ativo: false, imagem: "Estadio"));
-    conquistasIniciais.add(Conquistas(titulo: "Mergulho", descricao: "Meta para voar", ativo: false, imagem: "Mergulho"));
-    conquistasIniciais.add(Conquistas(titulo: "Noivado", descricao: "Meta para saltar", ativo: true, imagem: "Noivado"));
-    conquistasIniciais.add(Conquistas(titulo: "NossaCasa", descricao: "Meta para saltar", ativo: false, imagem: "NossaCasa"));
-    conquistasIniciais.add(Conquistas(titulo: "Pampulha", descricao: "Meta para voar", ativo: false, imagem: "Pampulha"));
-    conquistasIniciais.add(Conquistas(titulo: "Paraquedas", descricao: "Meta para saltar", ativo: true, imagem: "Paraquedas"));
-    conquistasIniciais.add(Conquistas(titulo: "Pendulo", descricao: "Meta para saltar", ativo: false, imagem: "Pendulo"));
-    conquistasIniciais.add(Conquistas(titulo: "Rapel", descricao: "Meta para voar", ativo: false, imagem: "Rapel"));
-    conquistasIniciais.add(Conquistas(titulo: "TrailRun", descricao: "Meta para saltar", ativo: true, imagem: "TrailRun"));
-    conquistasIniciais.add(Conquistas(titulo: "Triatlo", descricao: "Meta para saltar", ativo: false, imagem: "Triatlo"));
-    conquistasIniciais.add(Conquistas(titulo: "Utv", descricao: "Meta para saltar", ativo: true, imagem: "Utv"));
-    conquistasIniciais.add(Conquistas(titulo: "Viajar Moto", descricao: "Meta para saltar", ativo: false, imagem: "ViajarMoto"));
+    final Directory diretorioApp = await getApplicationDocumentsDirectory();
+
+    conquistasIniciais.add(Conquistas(titulo: "Acampar", descricao: "Meta para voar", ativo: false, imagemColorido: "${diretorioApp.path}/Pin/Acampar.png", imagemPretoeBranco: "${diretorioApp.path}/Pin/Acampar-pretoebranco.png"));
+    conquistasIniciais.add(Conquistas(titulo: "AsaDelta", descricao: "Meta para saltar", ativo: true, imagemColorido: "${diretorioApp.path}/Pin/AsaDelta.png", imagemPretoeBranco: "${diretorioApp.path}/Pin/AsaDelta-pretoebranco.png"));
+    conquistasIniciais.add(Conquistas(titulo: "Balao", descricao: "Meta para saltar", ativo: false, imagemColorido: "${diretorioApp.path}/Pin/Balao.png", imagemPretoeBranco: "${diretorioApp.path}/Pin/Balao-pretoebranco.png"));
+    conquistasIniciais.add(Conquistas(titulo: "Braunas", descricao: "Meta para voar", ativo: false, imagemColorido: "${diretorioApp.path}/Pin/Braunas.png", imagemPretoeBranco: "${diretorioApp.path}/Pin/Braunas-pretoebranco.png"));
+    conquistasIniciais.add(Conquistas(titulo: "Caiaque", descricao: "Meta para saltar", ativo: false, imagemColorido: "${diretorioApp.path}/Pin/Caiaque.png", imagemPretoeBranco: "${diretorioApp.path}/Pin/Caiaque-pretoebranco.png"));
+    conquistasIniciais.add(Conquistas(titulo: "CampCross", descricao: "Meta para saltar", ativo: false, imagemColorido: "${diretorioApp.path}/Pin/CampCross.png", imagemPretoeBranco: "${diretorioApp.path}/Pin/CampCross-pretoebranco.png"));
+    conquistasIniciais.add(Conquistas(titulo: "Contorno", descricao: "Meta para voar", ativo: false, imagemColorido: "${diretorioApp.path}/Pin/Contorno.png", imagemPretoeBranco: "${diretorioApp.path}/Pin/Contorno-pretoebranco.png"));
+    conquistasIniciais.add(Conquistas(titulo: "Escalada", descricao: "Meta para saltar", ativo: false, imagemColorido: "${diretorioApp.path}/Pin/Escalada.png", imagemPretoeBranco: "${diretorioApp.path}/Pin/Escalada-pretoebranco.png"));
+    conquistasIniciais.add(Conquistas(titulo: "Estadio", descricao: "Meta para saltar", ativo: false, imagemColorido: "${diretorioApp.path}/Pin/Estadio.png", imagemPretoeBranco: "${diretorioApp.path}/Pin/Estadio-pretoebranco.png"));
+    conquistasIniciais.add(Conquistas(titulo: "Mergulho", descricao: "Meta para voar", ativo: false, imagemColorido: "${diretorioApp.path}/Pin/Mergulho.png", imagemPretoeBranco: "${diretorioApp.path}/Pin/Mergulho-pretoebranco.png"));
+    conquistasIniciais.add(Conquistas(titulo: "Noivado", descricao: "Meta para saltar", ativo: false, imagemColorido: "${diretorioApp.path}/Pin/Noivado.png", imagemPretoeBranco: "${diretorioApp.path}/Pin/Noivado-pretoebranco.png"));
+    conquistasIniciais.add(Conquistas(titulo: "NossaCasa", descricao: "Meta para saltar", ativo: false, imagemColorido: "${diretorioApp.path}/Pin/NossaCasa.png", imagemPretoeBranco: "${diretorioApp.path}/Pin/NossaCasa-pretoebranco.png"));
+    conquistasIniciais.add(Conquistas(titulo: "Pampulha", descricao: "Meta para voar", ativo: false, imagemColorido: "${diretorioApp.path}/Pin/Pampulha.png", imagemPretoeBranco: "${diretorioApp.path}/Pin/Pampulha-pretoebranco.png"));
+    conquistasIniciais.add(Conquistas(titulo: "Paraquedas", descricao: "Meta para saltar", ativo: false, imagemColorido: "${diretorioApp.path}/Pin/Paraquedas.png", imagemPretoeBranco: "${diretorioApp.path}/Pin/Paraquedas-pretoebranco.png"));
+    conquistasIniciais.add(Conquistas(titulo: "Pendulo", descricao: "Meta para saltar", ativo: false, imagemColorido: "${diretorioApp.path}/Pin/Pendulo.png", imagemPretoeBranco: "${diretorioApp.path}/Pin/Pendulo-pretoebranco.png"));
+    conquistasIniciais.add(Conquistas(titulo: "Rapel", descricao: "Meta para voar", ativo: false, imagemColorido: "${diretorioApp.path}/Pin/Rapel.png", imagemPretoeBranco: "${diretorioApp.path}/Pin/Rapel-pretoebranco.png"));
+    conquistasIniciais.add(Conquistas(titulo: "TrailRun", descricao: "Meta para saltar", ativo: true, imagemColorido: "${diretorioApp.path}/Pin/TrailRun.png", imagemPretoeBranco: "${diretorioApp.path}/Pin/TrailRun-pretoebranco.png"));
+    conquistasIniciais.add(Conquistas(titulo: "Triatlo", descricao: "Meta para saltar", ativo: false, imagemColorido: "${diretorioApp.path}/Pin/Triatlo.png", imagemPretoeBranco: "${diretorioApp.path}/Pin/Triatlo-pretoebranco.png"));
+    conquistasIniciais.add(Conquistas(titulo: "Utv", descricao: "Meta para saltar", ativo: true, imagemColorido: "${diretorioApp.path}/Pin/Utv.png", imagemPretoeBranco: "${diretorioApp.path}/Pin/Utv-pretoebranco.png"));
+    conquistasIniciais.add(Conquistas(titulo: "Viajar Moto", descricao: "Meta para saltar", ativo: false, imagemColorido: "${diretorioApp.path}/Pin/ViajarMoto.png", imagemPretoeBranco: "${diretorioApp.path}/Pin/ViajarMoto-pretoebranco.png"));
 
 
     await ConquistasDao.instance.insertList(conquistasIniciais);
@@ -137,11 +139,19 @@ Future<void> copiarAssetsParaDiretorioLocal() async {
 
   for (String caminhoAsset in caminhosAssets) {
     final String nomeArquivo = caminhoAsset.split('/').last;
-
-    final ByteData bytes = await rootBundle.load(caminhoAsset);
-    final List<int> listaBytes = bytes.buffer.asUint8List();
-
     final File arquivoLocal = File('$caminhoPastaLocal/$nomeArquivo');
-    await arquivoLocal.writeAsBytes(listaBytes, flush: true);
+
+    if (!await arquivoLocal.exists()) {
+      try {
+        final ByteData bytes = await rootBundle.load(caminhoAsset);
+        final Uint8List listaBytes = bytes.buffer.asUint8List();
+        await arquivoLocal.writeAsBytes(listaBytes, flush: true);
+        print('Arquivo $nomeArquivo copiado com sucesso!');
+      } catch (e) {
+        print("Erro ao copiar o asset $caminhoAsset: $e");
+      }
+    } else {
+      print('Arquivo $nomeArquivo já existe, pulando a cópia.');
+    }
   }
 }

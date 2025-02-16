@@ -12,6 +12,12 @@ class ConquistasController extends GetxController {
   Future<void> loadConquistas() async {
     conquistas.value = [];
     conquistas.value = (await ConquistasDao.instance.queryAllRows())!;
+    conquistas.value.sort((a, b) {
+      if (a.ativo == b.ativo) {
+        return a.titulo.toLowerCase().compareTo(b.titulo.toLowerCase());
+      }
+      return a.ativo ? -1 : 1;
+    });
   }
 
   @override

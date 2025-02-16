@@ -31,14 +31,15 @@ class AddConquistaController extends GetxController {
       titulo: "",
       descricao: "",
       ativo: false,
-      imagem: "",
+      imagemColorido: "",
+      imagemPretoeBranco: "",
     );
   }
 
   Future<void> pickImage() async {
     imagem = await _picker.pickImage(
       source: ImageSource.gallery,
-      imageQuality: 80,
+      imageQuality: 50,
     );
     if (imagem != null) {
       imagemSelecionadaPath.value = imagem!.path;
@@ -50,7 +51,9 @@ class AddConquistaController extends GetxController {
       if (imagem != null) {
         DialogUtils.showLoadingDialog("Criando Conquista");
         await Future.delayed(Duration(milliseconds: 1000));
-        conquista.value!.imagem = removeDiacritics(conquista.value!.titulo.trim().replaceAll(" ", ""));
+        String imagemName = removeDiacritics(conquista.value!.titulo.trim().replaceAll(" ", ""));
+        conquista.value!.imagemColorido = imagemName;
+        conquista.value!.imagemPretoeBranco = imagemName+"-pretoebranco";
         FotoUtils.salvarImagemNoDiretorioPin(imagem!.path, conquista.value!);
       }
     }catch(Ex){

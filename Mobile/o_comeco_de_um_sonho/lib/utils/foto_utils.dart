@@ -49,8 +49,8 @@ class FotoUtils {
 
   }
 
-  static Future<Map<String, String>> salvarImagemNoDiretorioPin(
-      String caminhoFoto, Conquistas conquista) async {
+  static Future<Map<String, String>> salvarImagemNoDiretorioPin(String caminhoFoto, Conquistas conquista) async {
+
     final Directory diretorio = await getApplicationDocumentsDirectory();
     final String novoDiretorioPath = '${diretorio.path}/Pin';
     final Directory novoDiretorio = Directory(novoDiretorioPath);
@@ -58,7 +58,7 @@ class FotoUtils {
     if (!await novoDiretorio.exists()) {
       await novoDiretorio.create(recursive: true);
     }
-    final String imagemName = conquista.imagem!;
+    final String imagemName = conquista.imagemColorido!;
 
     final Map<String, String> params = {
       'caminhoFoto': caminhoFoto,
@@ -70,6 +70,9 @@ class FotoUtils {
       processarImagemEmIsolate,
       params,
     );
+
+    conquista.imagemColorido = resultado['colorido'];
+    conquista.imagemPretoeBranco = resultado['pretoebranco'];
 
     await ConquistasDao.instance.insert(conquista);
     Get.find<ConquistasController>().loadConquistas();
@@ -110,10 +113,12 @@ class FotoUtils {
     };
   }
 
-  static Future<String> getLocalImagePath(String nomeImagem) async {
+  static Future<String> getLocalImagePath(String nomeImagem, Directory? diretorio) async {
     try{
-      final Directory diretorio = await getApplicationDocumentsDirectory();
-      return '${diretorio.path}/Pin/$nomeImagem.png';
+      if(diretorio == null){
+        diretorio = await getApplicationDocumentsDirectory();
+      }
+      return '${diretorio!.path}/Pin/$nomeImagem.png';
     }catch(ex){
       print(ex);
     }

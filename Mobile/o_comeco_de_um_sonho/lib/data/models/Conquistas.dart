@@ -5,7 +5,8 @@ class Conquistas {
   String titulo;
   String descricao;
   bool ativo;
-  String? imagem;
+  String? imagemColorido;
+  String? imagemPretoeBranco;
   DateTime? dataConquista;
   String? local;
   String? experienciaDela;
@@ -16,7 +17,8 @@ class Conquistas {
     required this.titulo,
     required this.descricao,
     this.ativo = false,
-    this.imagem,
+    this.imagemColorido,
+    this.imagemPretoeBranco,
     this.dataConquista,
     this.local,
     this.experienciaDela,
@@ -29,7 +31,8 @@ class Conquistas {
       'titulo': titulo,
       'descricao': descricao,
       'ativo': ativo ? 1 : 0,
-      'imagem': imagem,
+      'imagemColorido': imagemColorido,
+      'imagemPretoeBranco': imagemPretoeBranco,
       'dataConquista': dataConquista?.toIso8601String(),
       'local': local,
       'experienciaDela': experienciaDela,
@@ -43,7 +46,8 @@ class Conquistas {
       titulo: map['titulo'],
       descricao: map['descricao'],
       ativo: map['ativo'] == 1,
-      imagem: map['imagem'],
+      imagemColorido: map['imagemColorido'],
+      imagemPretoeBranco: map['imagemPretoeBranco'],
       dataConquista: map['dataConquista'] != null ? DateTime.parse(map['dataConquista']) : null,
       local: map['local'],
       experienciaDela: map['experienciaDela'],
