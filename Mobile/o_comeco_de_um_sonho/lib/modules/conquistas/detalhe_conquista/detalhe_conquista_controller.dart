@@ -1,12 +1,14 @@
 import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:o_comeco_de_um_sonho/data/models/ContentGemini.dart';
 import 'package:o_comeco_de_um_sonho/modules/conquistas/conquistas_controller.dart';
 
 import '../../../data/dao/conquistas_dao.dart';
 import '../../../data/dao/fotos_dao.dart';
 import '../../../data/models/Conquistas.dart';
 import '../../../data/models/Foto.dart';
+import '../../../services/rest_service.dart';
 import '../../../utils/foto_utils.dart';
 
 class DetalheConquistaController extends GetxController {
@@ -47,7 +49,7 @@ class DetalheConquistaController extends GetxController {
   Future<void> pickImagem() async {
     final XFile? imagem = await _picker.pickImage(
       source: ImageSource.gallery,
-      imageQuality: 80,
+      imageQuality: 60,
     );
     if (imagem != null) {
       await FotoUtils.selecionarESalvarImagem(imagemSelecionada: imagem, idConquista: conquista.value?.id);
@@ -64,6 +66,7 @@ class DetalheConquistaController extends GetxController {
 
 
   Future<bool> ativarPin() async {
+    ContentGemini? batata = await RestService.perguntarGemini("Me de um texto de um horoscopo para um casal do signo de peixes e sagitário, quero o de cada um separado");
     if (dataConquista.value != null) {
 
       conquista.value!.dataConquista = dataConquista.value;

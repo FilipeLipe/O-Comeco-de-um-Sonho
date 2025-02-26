@@ -49,3 +49,7 @@ firebase.json
 # Configuração de testes
 coverage/
 .integration_test_failures/
+
+
+*.env
+

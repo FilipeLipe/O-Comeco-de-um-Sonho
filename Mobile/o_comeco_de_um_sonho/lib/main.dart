@@ -3,6 +3,7 @@ import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:get/get.dart';
 import 'package:o_comeco_de_um_sonho/data/models/Conquistas.dart';
@@ -22,6 +23,7 @@ void main() async {
   bool introducaoCompleted = prefs.getBool('introducaoCompleted') ?? false;
 
   await initDatabase();
+  await dotenv.load(fileName: ".env");
   copiarAssetsParaDiretorioLocal();
 
   runApp(MyApp(introducaoCompleted: introducaoCompleted));
@@ -91,26 +93,26 @@ Future<void> insertConquistas() async {
 
     final Directory diretorioApp = await getApplicationDocumentsDirectory();
 
-    conquistasIniciais.add(Conquistas(titulo: "Acampar", descricao: "Meta para voar", ativo: false, imagemColorido: "${diretorioApp.path}/Pin/Acampar.png", imagemPretoeBranco: "${diretorioApp.path}/Pin/Acampar-pretoebranco.png"));
-    conquistasIniciais.add(Conquistas(titulo: "AsaDelta", descricao: "Meta para saltar", ativo: true, imagemColorido: "${diretorioApp.path}/Pin/AsaDelta.png", imagemPretoeBranco: "${diretorioApp.path}/Pin/AsaDelta-pretoebranco.png"));
-    conquistasIniciais.add(Conquistas(titulo: "Balao", descricao: "Meta para saltar", ativo: false, imagemColorido: "${diretorioApp.path}/Pin/Balao.png", imagemPretoeBranco: "${diretorioApp.path}/Pin/Balao-pretoebranco.png"));
-    conquistasIniciais.add(Conquistas(titulo: "Braunas", descricao: "Meta para voar", ativo: false, imagemColorido: "${diretorioApp.path}/Pin/Braunas.png", imagemPretoeBranco: "${diretorioApp.path}/Pin/Braunas-pretoebranco.png"));
-    conquistasIniciais.add(Conquistas(titulo: "Caiaque", descricao: "Meta para saltar", ativo: false, imagemColorido: "${diretorioApp.path}/Pin/Caiaque.png", imagemPretoeBranco: "${diretorioApp.path}/Pin/Caiaque-pretoebranco.png"));
-    conquistasIniciais.add(Conquistas(titulo: "CampCross", descricao: "Meta para saltar", ativo: false, imagemColorido: "${diretorioApp.path}/Pin/CampCross.png", imagemPretoeBranco: "${diretorioApp.path}/Pin/CampCross-pretoebranco.png"));
-    conquistasIniciais.add(Conquistas(titulo: "Contorno", descricao: "Meta para voar", ativo: false, imagemColorido: "${diretorioApp.path}/Pin/Contorno.png", imagemPretoeBranco: "${diretorioApp.path}/Pin/Contorno-pretoebranco.png"));
-    conquistasIniciais.add(Conquistas(titulo: "Escalada", descricao: "Meta para saltar", ativo: false, imagemColorido: "${diretorioApp.path}/Pin/Escalada.png", imagemPretoeBranco: "${diretorioApp.path}/Pin/Escalada-pretoebranco.png"));
-    conquistasIniciais.add(Conquistas(titulo: "Estadio", descricao: "Meta para saltar", ativo: false, imagemColorido: "${diretorioApp.path}/Pin/Estadio.png", imagemPretoeBranco: "${diretorioApp.path}/Pin/Estadio-pretoebranco.png"));
-    conquistasIniciais.add(Conquistas(titulo: "Mergulho", descricao: "Meta para voar", ativo: false, imagemColorido: "${diretorioApp.path}/Pin/Mergulho.png", imagemPretoeBranco: "${diretorioApp.path}/Pin/Mergulho-pretoebranco.png"));
-    conquistasIniciais.add(Conquistas(titulo: "Noivado", descricao: "Meta para saltar", ativo: false, imagemColorido: "${diretorioApp.path}/Pin/Noivado.png", imagemPretoeBranco: "${diretorioApp.path}/Pin/Noivado-pretoebranco.png"));
-    conquistasIniciais.add(Conquistas(titulo: "NossaCasa", descricao: "Meta para saltar", ativo: false, imagemColorido: "${diretorioApp.path}/Pin/NossaCasa.png", imagemPretoeBranco: "${diretorioApp.path}/Pin/NossaCasa-pretoebranco.png"));
-    conquistasIniciais.add(Conquistas(titulo: "Pampulha", descricao: "Meta para voar", ativo: false, imagemColorido: "${diretorioApp.path}/Pin/Pampulha.png", imagemPretoeBranco: "${diretorioApp.path}/Pin/Pampulha-pretoebranco.png"));
-    conquistasIniciais.add(Conquistas(titulo: "Paraquedas", descricao: "Meta para saltar", ativo: false, imagemColorido: "${diretorioApp.path}/Pin/Paraquedas.png", imagemPretoeBranco: "${diretorioApp.path}/Pin/Paraquedas-pretoebranco.png"));
-    conquistasIniciais.add(Conquistas(titulo: "Pendulo", descricao: "Meta para saltar", ativo: false, imagemColorido: "${diretorioApp.path}/Pin/Pendulo.png", imagemPretoeBranco: "${diretorioApp.path}/Pin/Pendulo-pretoebranco.png"));
-    conquistasIniciais.add(Conquistas(titulo: "Rapel", descricao: "Meta para voar", ativo: false, imagemColorido: "${diretorioApp.path}/Pin/Rapel.png", imagemPretoeBranco: "${diretorioApp.path}/Pin/Rapel-pretoebranco.png"));
-    conquistasIniciais.add(Conquistas(titulo: "TrailRun", descricao: "Meta para saltar", ativo: true, imagemColorido: "${diretorioApp.path}/Pin/TrailRun.png", imagemPretoeBranco: "${diretorioApp.path}/Pin/TrailRun-pretoebranco.png"));
-    conquistasIniciais.add(Conquistas(titulo: "Triatlo", descricao: "Meta para saltar", ativo: false, imagemColorido: "${diretorioApp.path}/Pin/Triatlo.png", imagemPretoeBranco: "${diretorioApp.path}/Pin/Triatlo-pretoebranco.png"));
-    conquistasIniciais.add(Conquistas(titulo: "Utv", descricao: "Meta para saltar", ativo: true, imagemColorido: "${diretorioApp.path}/Pin/Utv.png", imagemPretoeBranco: "${diretorioApp.path}/Pin/Utv-pretoebranco.png"));
-    conquistasIniciais.add(Conquistas(titulo: "Viajar Moto", descricao: "Meta para saltar", ativo: false, imagemColorido: "${diretorioApp.path}/Pin/ViajarMoto.png", imagemPretoeBranco: "${diretorioApp.path}/Pin/ViajarMoto-pretoebranco.png"));
+    conquistasIniciais.add(Conquistas(titulo: "Acampar", descricao: "Acampar no meio do mato, ou em um camping", ativo: false, imagemColorido: "${diretorioApp.path}/Pin/Acampar.png", imagemPretoeBranco: "${diretorioApp.path}/Pin/Acampar-pretoebranco.png"));
+    conquistasIniciais.add(Conquistas(titulo: "AsaDelta", descricao: "Voar de asa delta no rio", ativo: true, imagemColorido: "${diretorioApp.path}/Pin/AsaDelta.png", imagemPretoeBranco: "${diretorioApp.path}/Pin/AsaDelta-pretoebranco.png"));
+    conquistasIniciais.add(Conquistas(titulo: "Balao", descricao: "Voar de balão ao por do sol", ativo: false, imagemColorido: "${diretorioApp.path}/Pin/Balao.png", imagemPretoeBranco: "${diretorioApp.path}/Pin/Balao-pretoebranco.png"));
+    conquistasIniciais.add(Conquistas(titulo: "Braunas", descricao: "Conhecer a cachoeira do Braunas", ativo: false, imagemColorido: "${diretorioApp.path}/Pin/Braunas.png", imagemPretoeBranco: "${diretorioApp.path}/Pin/Braunas-pretoebranco.png"));
+    conquistasIniciais.add(Conquistas(titulo: "Caiaque", descricao: "Atravassar um rio de caiaque", ativo: false, imagemColorido: "${diretorioApp.path}/Pin/Caiaque.png", imagemPretoeBranco: "${diretorioApp.path}/Pin/Caiaque-pretoebranco.png"));
+    conquistasIniciais.add(Conquistas(titulo: "CampCross", descricao: "Participar de um campeonato de cross juntos", ativo: false, imagemColorido: "${diretorioApp.path}/Pin/CampCross.png", imagemPretoeBranco: "${diretorioApp.path}/Pin/CampCross-pretoebranco.png"));
+    conquistasIniciais.add(Conquistas(titulo: "Contorno", descricao: "Completar a volta da contorno", ativo: false, imagemColorido: "${diretorioApp.path}/Pin/Contorno.png", imagemPretoeBranco: "${diretorioApp.path}/Pin/Contorno-pretoebranco.png"));
+    conquistasIniciais.add(Conquistas(titulo: "Escalada", descricao: "Praticar escalada em bh", ativo: false, imagemColorido: "${diretorioApp.path}/Pin/Escalada.png", imagemPretoeBranco: "${diretorioApp.path}/Pin/Escalada-pretoebranco.png"));
+    conquistasIniciais.add(Conquistas(titulo: "Estadio", descricao: "Ir no tuor do mineirão", ativo: false, imagemColorido: "${diretorioApp.path}/Pin/Estadio.png", imagemPretoeBranco: "${diretorioApp.path}/Pin/Estadio-pretoebranco.png"));
+    conquistasIniciais.add(Conquistas(titulo: "Mergulho", descricao: "Fazer um mergulho em arraial", ativo: false, imagemColorido: "${diretorioApp.path}/Pin/Mergulho.png", imagemPretoeBranco: "${diretorioApp.path}/Pin/Mergulho-pretoebranco.png"));
+    conquistasIniciais.add(Conquistas(titulo: "Noivado", descricao: "Ficar noivos", ativo: false, imagemColorido: "${diretorioApp.path}/Pin/Noivado.png", imagemPretoeBranco: "${diretorioApp.path}/Pin/Noivado-pretoebranco.png"));
+    conquistasIniciais.add(Conquistas(titulo: "NossaCasa", descricao: "Comprar a nossa primeira casa", ativo: false, imagemColorido: "${diretorioApp.path}/Pin/NossaCasa.png", imagemPretoeBranco: "${diretorioApp.path}/Pin/NossaCasa-pretoebranco.png"));
+    conquistasIniciais.add(Conquistas(titulo: "Pampulha", descricao: "Completar a volta da pampulha", ativo: false, imagemColorido: "${diretorioApp.path}/Pin/Pampulha.png", imagemPretoeBranco: "${diretorioApp.path}/Pin/Pampulha-pretoebranco.png"));
+    conquistasIniciais.add(Conquistas(titulo: "Paraquedas", descricao: "Saltar de paraquedas", ativo: false, imagemColorido: "${diretorioApp.path}/Pin/Paraquedas.png", imagemPretoeBranco: "${diretorioApp.path}/Pin/Paraquedas-pretoebranco.png"));
+    conquistasIniciais.add(Conquistas(titulo: "Pendulo", descricao: "Fazer um pendulo", ativo: false, imagemColorido: "${diretorioApp.path}/Pin/Pendulo.png", imagemPretoeBranco: "${diretorioApp.path}/Pin/Pendulo-pretoebranco.png"));
+    conquistasIniciais.add(Conquistas(titulo: "Rapel", descricao: "Descer uma cachoeira de rapel", ativo: false, imagemColorido: "${diretorioApp.path}/Pin/Rapel.png", imagemPretoeBranco: "${diretorioApp.path}/Pin/Rapel-pretoebranco.png"));
+    conquistasIniciais.add(Conquistas(titulo: "TrailRun", descricao: "Fazer um trail run", ativo: true, imagemColorido: "${diretorioApp.path}/Pin/TrailRun.png", imagemPretoeBranco: "${diretorioApp.path}/Pin/TrailRun-pretoebranco.png"));
+    conquistasIniciais.add(Conquistas(titulo: "Triatlo", descricao: "Fazer um triatlo", ativo: false, imagemColorido: "${diretorioApp.path}/Pin/Triatlo.png", imagemPretoeBranco: "${diretorioApp.path}/Pin/Triatlo-pretoebranco.png"));
+    conquistasIniciais.add(Conquistas(titulo: "Utv", descricao: "Andar de UTV", ativo: true, imagemColorido: "${diretorioApp.path}/Pin/Utv.png", imagemPretoeBranco: "${diretorioApp.path}/Pin/Utv-pretoebranco.png"));
+    conquistasIniciais.add(Conquistas(titulo: "Viajar Moto", descricao: "Fazer nossa primeira viagem de moto", ativo: false, imagemColorido: "${diretorioApp.path}/Pin/ViajarMoto.png", imagemPretoeBranco: "${diretorioApp.path}/Pin/ViajarMoto-pretoebranco.png"));
 
 
     await ConquistasDao.instance.insertList(conquistasIniciais);

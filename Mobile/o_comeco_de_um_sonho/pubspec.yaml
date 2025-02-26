@@ -65,6 +65,7 @@ dependencies:
   path_provider: ^2.0.11
   image: ^4.0.17
   flutter_image_compress: ^2.0.0
+  flutter_dotenv: ^5.2.1
 
 
 dev_dependencies:
@@ -110,4 +111,5 @@ flutter:
     - assets/
     - assets/Pin/
     - assets/Fotos/
+    - .env
 
