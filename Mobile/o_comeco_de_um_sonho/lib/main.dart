@@ -16,8 +16,20 @@ import 'package:flutter_localizations/flutter_localizations.dart';
 import 'data/dao/conquistas_dao.dart';
 import 'helper/database_helper.dart';
 
+import 'package:firebase_core/firebase_core.dart';
+import 'package:firebase_messaging/firebase_messaging.dart';
+
+Future<void> _firebaseMessagingBackgroundHandler(RemoteMessage message) async {
+  await Firebase.initializeApp();
+  print("Mensagem recebida em background: ${message.messageId}");
+}
+
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
+
+  await Firebase.initializeApp();
+  await FirebaseMessaging.instance.requestPermission();
+  FirebaseMessaging.onBackgroundMessage(_firebaseMessagingBackgroundHandler);
 
   SharedPreferences prefs = await SharedPreferences.getInstance();
   bool introducaoCompleted = prefs.getBool('introducaoCompleted') ?? false;
@@ -36,11 +48,30 @@ Future<void> initDatabase() async {
   await insertDados();
 }
 
-class MyApp extends StatelessWidget {
-  final bool introducaoCompleted;
 
+class MyApp extends StatefulWidget {
+
+  final bool introducaoCompleted;
   MyApp({required this.introducaoCompleted});
 
+  @override
+  State<MyApp> createState() => _MyAppState();
+}
+
+class _MyAppState extends State<MyApp> {
+  @override
+  void initState() {
+    super.initState();
+
+    FirebaseMessaging.onMessage.listen((RemoteMessage message) {
+      print('Mensagem recebida em primeiro plano!');
+
+      if (message.notification != null) {
+        print('Título: ${message.notification!.title}');
+        print('Corpo: ${message.notification!.body}');
+      }
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -72,7 +103,7 @@ class MyApp extends StatelessWidget {
           background: Colors.white,
         ),
       ),
-      initialRoute: introducaoCompleted ? Routes.HOME : Routes.HOME,
+      initialRoute: widget.introducaoCompleted ? Routes.HOME : Routes.HOME,
       getPages: AppPages.routes,
 
     );

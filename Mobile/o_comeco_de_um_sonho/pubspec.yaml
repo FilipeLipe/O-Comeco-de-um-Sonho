@@ -66,6 +66,8 @@ dependencies:
   image: ^4.0.17
   flutter_image_compress: ^2.0.0
   flutter_dotenv: ^5.2.1
+  firebase_messaging: ^15.1.0
+  firebase_core: ^3.4.0
 
 
 dev_dependencies:

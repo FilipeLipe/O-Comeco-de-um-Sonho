@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "990704876019",
+    "project_id": "ocomecodeumsonhofcm",
+    "storage_bucket": "ocomecodeumsonhofcm.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:990704876019:android:cf0ba3c04d7761df4c7a86",
+        "android_client_info": {
+          "package_name": "com.filipe.o_comeco_de_um_sonho"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBGF_Ngkpo-PBq95V1URERAsNZ2rjJ5EAA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

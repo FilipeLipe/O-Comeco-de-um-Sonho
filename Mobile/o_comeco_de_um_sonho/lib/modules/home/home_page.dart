@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_slider_drawer/flutter_slider_drawer.dart';
 import 'package:get/get.dart';
+import 'package:o_comeco_de_um_sonho/modules/home/home_controller.dart';
 import '../../routes/app_routes.dart';
 
 class HomePage extends StatefulWidget {
@@ -12,6 +13,8 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
   final GlobalKey<SliderDrawerState> _sliderDrawerKey = GlobalKey<SliderDrawerState>();
+
+  final HomeController controller = Get.find<HomeController>();
 
   Widget _buildSlider() {
     return Container(

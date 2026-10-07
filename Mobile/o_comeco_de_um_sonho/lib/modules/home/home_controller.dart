@@ -1,3 +1,4 @@
+import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:get/get.dart';
 
 import '../../services/rest_service.dart';
@@ -9,12 +10,17 @@ class HomeController extends GetxController {
 
   @override
   Future<void> onInit() async {
-    DialogUtils.showLoadingDialog("Carregando Fotos");
     super.onInit();
+    getFCMToken();
   }
 
   void increment() {
     counter.value++;
+  }
+
+  void getFCMToken() async {
+    String? token = await FirebaseMessaging.instance.getToken();
+    print("FCM Token: $token");
   }
 
 }
